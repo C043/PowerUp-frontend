@@ -6,7 +6,7 @@ import "./NavBar.scss";
 
 function NavBar() {
   return (
-    <Navbar className="bg-body-dark">
+    <Navbar className="bg-body-dark pt-3">
       <Container>
         <Navbar.Brand href="#home">
           Game <span className="text-primary">Vault</span>

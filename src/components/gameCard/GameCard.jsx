@@ -1,0 +1,32 @@
+import { Button, Card } from "react-bootstrap";
+import "./GameCard.scss";
+
+const GameCard = ({ image, title }) => {
+  return (
+    <Card style={{ width: "15rem" }} border="dark" className="border-opacity-0">
+      <Card.Img variant="top" src="image" style={{ borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }} />
+      <Card.Body
+        style={{
+          backgroundImage: "url(" + image + ")",
+          backgroundSize: "cover",
+          borderBottomLeftRadius: "25px",
+          borderBottomRightRadius: "25px",
+        }}
+        className="imageBg p-0"
+      >
+        <div className="blur py-3 px-3 rounded-bottom">
+          <Card.Title>{title}</Card.Title>
+          <Card.Text>
+            <div className="d-flex justify-content-end">
+              <Button variant="primary" className="rounded rounded-pill ">
+                Open
+              </Button>
+            </div>
+          </Card.Text>
+        </div>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export default GameCard;
