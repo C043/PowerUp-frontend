@@ -8,6 +8,9 @@ const RegisterComponent = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [hasError, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const registerFetch = async () => {
     try {
       const resp = await fetch("http://localhost:3001/auth/register", {
@@ -26,8 +29,10 @@ const RegisterComponent = () => {
       if (resp.ok) {
         const data = await resp.json();
         console.log(data);
+        setSuccess(true);
       } else throw new Error("Fetch Error");
     } catch (error) {
+      setError(true);
       console.log(error);
     }
   };
@@ -39,7 +44,13 @@ const RegisterComponent = () => {
     <Form className="">
       <Form.Group className="mb-3" controlId="email">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="name">
         <div className="d-flex">
@@ -50,6 +61,7 @@ const RegisterComponent = () => {
               placeholder="First Name"
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
+              required
             />
           </div>
           <div className="d-flex flex-column">
@@ -59,13 +71,20 @@ const RegisterComponent = () => {
               placeholder="Last Name"
               value={lastName}
               onChange={e => setLastName(e.target.value)}
+              required
             />
           </div>
         </div>
       </Form.Group>
       <Form.Group className="mb-3" controlId="username">
         <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+        <Form.Control
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          required
+        />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="password">
@@ -75,9 +94,10 @@ const RegisterComponent = () => {
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          required
         />
       </Form.Group>
-      <Button variant="primary" onClick={handleSubmit}>
+      <Button variant="primary" type="submit" onSubmit={handleSubmit}>
         Submit
       </Button>
     </Form>
