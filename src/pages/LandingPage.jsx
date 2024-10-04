@@ -20,7 +20,7 @@ const LandingPage = () => {
             Already signed up? <span className="text-secondary">Login</span>
           </p>
           <p className="h5">
-            Need an account? <span className="text-secondary">Sign up</span>
+            Need an account? <span className="text-secondary">Sign Up</span>
           </p>
         </div>
       </Container>
