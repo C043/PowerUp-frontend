@@ -4,11 +4,13 @@ $theme-colors: (
   "primary": #1ad214,
   "secondary": #72f76e,
   "info": #16dfe9,
+  "danger": red,
   "light": #fef9f6,
 );
+
+$blue: #1ad214;
 // Import di bootstrap
 @import "bootstrap/scss/bootstrap";
-@import "./pages/LandingPage.scss";
 #root {
   height: 100vh;
 }
