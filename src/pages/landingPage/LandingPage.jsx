@@ -34,7 +34,7 @@ const LandingPage = () => {
               ""
             )}
             <h1 role="button" onClick={() => setRegister(false)} className="header">
-              Game <span className="text-secondary">Vault</span>
+              Game <span className="text-primary">Vault</span>
             </h1>
           </div>
           {login && <LoginComponent />}
@@ -42,17 +42,17 @@ const LandingPage = () => {
           {!register && !login && (
             <>
               <p className="h2">
-                Your game library on the <span className="text-secondary">go.</span>
+                Your game library on the <span className="text-primary">go.</span>
               </p>
               <p className="h5">
                 Already signed up?{" "}
-                <span role="button" onClick={() => setLogin(true)} className="text-secondary">
+                <span role="button" onClick={() => setLogin(true)} className="text-primary">
                   Login
                 </span>
               </p>
               <p className="h5">
                 Need an account?{" "}
-                <span role="button" onClick={() => setRegister(true)} className="text-secondary">
+                <span role="button" onClick={() => setRegister(true)} className="text-primary">
                   Sign Up
                 </span>
               </p>
