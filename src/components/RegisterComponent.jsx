@@ -9,6 +9,7 @@ const RegisterComponent = () => {
   const [password, setPassword] = useState("");
 
   const [hasError, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
 
   const registerFetch = async () => {
@@ -26,13 +27,15 @@ const RegisterComponent = () => {
           "Content-type": "application/json",
         },
       });
-      if (resp.ok) {
-        const data = await resp.json();
+      const data = await resp.json();
+      if (data.ok) {
         console.log(data);
+        setError(false);
         setSuccess(true);
-      } else throw new Error("Fetch Error");
+      } else throw new Error(data.message);
     } catch (error) {
       setError(true);
+      setErrorMessage(error.message);
       console.log(error);
     }
   };
@@ -43,7 +46,7 @@ const RegisterComponent = () => {
   };
   return (
     <Form onSubmit={e => handleSubmit(e)}>
-      {hasError ? <Alert variant="danger">There was something wrong</Alert> : ""}
+      {hasError ? <Alert variant="danger">{errorMessage}</Alert> : ""}
       <Form.Group className="mb-3" controlId="email">
         <Form.Label>Email address</Form.Label>
         <Form.Control
@@ -54,8 +57,8 @@ const RegisterComponent = () => {
           required
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="name">
-        <div className="d-flex">
+      <div className="d-flex">
+        <Form.Group className="mb-3" controlId="firstName">
           <div className="d-flex flex-column me-3">
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -66,6 +69,8 @@ const RegisterComponent = () => {
               required
             />
           </div>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="lastName">
           <div className="d-flex flex-column">
             <Form.Label>Surname</Form.Label>
             <Form.Control
@@ -76,8 +81,8 @@ const RegisterComponent = () => {
               required
             />
           </div>
-        </div>
-      </Form.Group>
+        </Form.Group>
+      </div>
       <Form.Group className="mb-3" controlId="username">
         <Form.Label>Username</Form.Label>
         <Form.Control
