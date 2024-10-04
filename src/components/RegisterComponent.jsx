@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 
 const RegisterComponent = () => {
   const [email, setEmail] = useState("");
@@ -36,12 +36,14 @@ const RegisterComponent = () => {
       console.log(error);
     }
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     registerFetch();
   };
   return (
-    <Form className="">
+    <Form onSubmit={e => handleSubmit(e)}>
+      {hasError ? <Alert variant="danger">There was something wrong</Alert> : ""}
       <Form.Group className="mb-3" controlId="email">
         <Form.Label>Email address</Form.Label>
         <Form.Control
@@ -97,7 +99,7 @@ const RegisterComponent = () => {
           required
         />
       </Form.Group>
-      <Button variant="primary" type="submit" onSubmit={handleSubmit}>
+      <Button variant="primary" type="submit">
         Submit
       </Button>
     </Form>
