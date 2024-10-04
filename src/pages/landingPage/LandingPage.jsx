@@ -5,6 +5,7 @@ import "./LandingPage.scss";
 import { useState } from "react";
 import RegisterComponent from "../../components/RegisterComponent";
 import { ArrowLeft } from "react-bootstrap-icons";
+import LoginComponent from "../../components/LoginComponent";
 
 const LandingPage = () => {
   const [register, setRegister] = useState(false);
@@ -36,15 +37,18 @@ const LandingPage = () => {
               Game <span className="text-secondary">Vault</span>
             </h1>
           </div>
-          {register ? (
-            <RegisterComponent />
-          ) : (
+          {login && <LoginComponent />}
+          {register && <RegisterComponent />}
+          {!register && !login && (
             <>
               <p className="h2">
                 Your game library on the <span className="text-secondary">go.</span>
               </p>
               <p className="h5">
-                Already signed up? <span className="text-secondary">Login</span>
+                Already signed up?{" "}
+                <span role="button" onClick={() => setLogin(true)} className="text-secondary">
+                  Login
+                </span>
               </p>
               <p className="h5">
                 Need an account?{" "}
