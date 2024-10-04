@@ -1,4 +1,10 @@
 // Bootstrap overrides
-
+$gray-900: #141415;
+$theme-colors: (
+  "primary": #1ad214,
+  "secondary": #72f76e,
+  "info": #16dfe9,
+  "light": #fef9f6,
+);
 // Import di bootstrap
 @import "bootstrap/scss/bootstrap";
