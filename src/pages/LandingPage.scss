@@ -1,0 +1,17 @@
+.hero {
+  height: 100vh;
+  .header {
+    font-size: 5em;
+    @media (max-width: 426px) {
+      font-size: 3em;
+    }
+  }
+}
+
+.VideoBg-module_video__2IPmN {
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.5;
+  filter: blur(10px);
+  background-color: black;
+}
