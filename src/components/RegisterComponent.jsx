@@ -28,7 +28,7 @@ const RegisterComponent = () => {
         },
       });
       const data = await resp.json();
-      if (data.ok) {
+      if (resp.ok) {
         console.log(data);
         setError(false);
         setSuccess(true);
@@ -47,6 +47,7 @@ const RegisterComponent = () => {
   return (
     <Form onSubmit={e => handleSubmit(e)}>
       {hasError ? <Alert variant="danger">{errorMessage}</Alert> : ""}
+      {success ? <Alert variant="primary">Registration done</Alert> : ""}
       <Form.Group className="mb-3" controlId="email">
         <Form.Label>Email address</Form.Label>
         <Form.Control
