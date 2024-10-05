@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
-  const token = useSelector(state => state.content);
+  const token = useSelector(state => state.token);
 
   const fetchGames = async () => {
     try {

@@ -1,5 +1,6 @@
 const initialState = {
-  content: "",
+  token: "",
+  user: {},
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -7,7 +8,12 @@ const mainReducer = (state = initialState, action) => {
     case "LOGIN":
       return {
         ...state,
-        content: action.payload,
+        token: action.payload,
+      };
+    case "USER":
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;

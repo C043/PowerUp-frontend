@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const RegisterComponent = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +13,35 @@ const RegisterComponent = () => {
   const [hasError, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const loginFetch = async () => {
+    try {
+      const resp = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      const data = await resp.json();
+      if (resp.ok) {
+        setError(false);
+        setSuccess(true);
+        dispatch({ type: "LOGIN", payload: data.token });
+        navigate("/home");
+      } else throw new Error(data.message);
+    } catch (error) {
+      setError(true);
+      setErrorMessage(error.message);
+      console.log(error);
+    }
+  };
 
   const registerFetch = async () => {
     try {
@@ -29,9 +60,10 @@ const RegisterComponent = () => {
       });
       const data = await resp.json();
       if (resp.ok) {
-        console.log(data);
         setError(false);
         setSuccess(true);
+        dispatch({ type: "USER_ID", payload: data.id });
+        loginFetch();
       } else throw new Error(data.message);
     } catch (error) {
       setError(true);
