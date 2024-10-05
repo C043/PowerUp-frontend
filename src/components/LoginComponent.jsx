@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -8,6 +10,10 @@ const LoginComponent = () => {
   const [hasError, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const registerFetch = async () => {
     try {
@@ -26,6 +32,8 @@ const LoginComponent = () => {
         console.log(data);
         setError(false);
         setSuccess(true);
+        dispatch({ type: "LOGIN", payload: data.token });
+        navigate("/home");
       } else throw new Error(data.message);
     } catch (error) {
       setError(true);

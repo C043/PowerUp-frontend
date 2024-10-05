@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import GameCard from "../../components/gameCard/GameCard";
 import NavBar from "../../components/navBar/NavBar";
 import { Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
+  const token = useSelector(state => state.content);
+
   const fetchGames = async () => {
     try {
       const resp = await fetch("http://localhost:3001/games", {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MjgwODQzNDQsImV4cCI6MTcyODY4OTE0NCwic3ViIjoiMSJ9.MYpa6Xp79M45qfIVp1VLxAxsHJdttdTNou75eJ14OqZ-t4tNNj8ue04GrnozTCjp",
+          Authorization: "Bearer " + token,
         },
       });
       if (resp.ok) {
@@ -21,6 +23,7 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchGames();
   }, []);
