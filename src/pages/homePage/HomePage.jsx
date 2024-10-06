@@ -3,6 +3,8 @@ import GameCard from "../../components/gameCard/GameCard";
 import NavBar from "../../components/navBar/NavBar";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import SideBar from "../../components/sideBar/SideBar";
+import Footer from "../../components/footer/Footer";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
@@ -31,14 +33,23 @@ const HomePage = () => {
     <>
       <NavBar />
       <Container>
-        <Row className="mt-3 row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-          {games.map(game => (
-            <Col key={game.id}>
-              <GameCard key={game.id} image={game.background_image} title={game.name} />
+        <h1>Home</h1>
+        <div className="d-flex">
+          <Row>
+            <Col xs="12">
+              <SideBar />
             </Col>
-          ))}
-        </Row>
+          </Row>
+          <Row className="mt-3 row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+            {games.map(game => (
+              <Col key={game.id}>
+                <GameCard key={game.id} image={game.background_image} title={game.name} />
+              </Col>
+            ))}
+          </Row>
+        </div>
       </Container>
+      <Footer />
     </>
   );
 };
