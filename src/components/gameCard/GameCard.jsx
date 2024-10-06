@@ -4,7 +4,9 @@ import "./GameCard.scss";
 const GameCard = ({ image, title }) => {
   return (
     <Card border="dark" className="border-opacity-0">
-      <Card.Img variant="top" src={image} />
+      <Card.Img variant="top" src={image} className="object-fit-cover" style={{
+        height: "150px"
+      }} />
       <Card.Body
         style={{
           backgroundImage: "url(" + image + ")",
@@ -15,7 +17,7 @@ const GameCard = ({ image, title }) => {
         className="imageBg p-0"
       >
         <div className="blur py-3 px-3 rounded-bottom w-100">
-          <Card.Title>{title}</Card.Title>
+          <Card.Title className="truncate">{title}</Card.Title>
           <Card.Text>
             <div className="d-flex justify-content-end">
               <Button variant="dark" className="rounded rounded-pill ">

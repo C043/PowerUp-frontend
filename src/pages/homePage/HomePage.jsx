@@ -56,10 +56,10 @@ const HomePage = () => {
               <SideBar />
             </Col>
           </Row>
-          <Row className="mt-3 row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+          <Row className="mt-3 row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 g-lg-3">
             {games.map(game => (
               <Col key={game.id}>
-                <GameCard key={game.id} image={game.background_image} title={game.name} />
+                <GameCard image={game.background_image} title={game.name} />
               </Col>
             ))}
           </Row>
