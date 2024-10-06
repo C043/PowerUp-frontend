@@ -5,10 +5,13 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import SideBar from "../../components/sideBar/SideBar";
 import Footer from "../../components/footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const token = useSelector(state => state.token);
+
+  const navigate = useNavigate()
 
   const fetchGames = async () => {
     try {
@@ -28,6 +31,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchGames();
+    if (!token) navigate("/")
   }, []);
   return (
     <>
