@@ -9,30 +9,42 @@ import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
+  const [page, setPage] = useState(1)
   const token = useSelector(state => state.token);
 
   const navigate = useNavigate()
 
   const fetchGames = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/games", {
+      const resp = await fetch("http://localhost:3001/games?page=" + page, {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
       if (resp.ok) {
         const data = await resp.json();
-        setGames(data.results);
+        if (page === 1) setGames(data.results)
+        else data.results.forEach(game => games.push(game))
       } else throw new Error("Fetch error");
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleScroll = (e) => {
+    const bottom = e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop === e.target.scrollingElement.clientHeight
+    if (bottom) {
+      setPage(() => page + 1)
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll)
+
   useEffect(() => {
     fetchGames();
     if (!token) navigate("/")
-  }, []);
+  }, [page]);
+
   return (
     <>
       <NavBar />
