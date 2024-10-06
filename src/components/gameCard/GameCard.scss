@@ -1,3 +1,11 @@
 .blur {
   backdrop-filter: brightness(0.9) blur(100px);
 }
+
+.card {
+  transition: all 200ms;
+
+  &:hover {
+    scale: 1.1;
+  }
+}

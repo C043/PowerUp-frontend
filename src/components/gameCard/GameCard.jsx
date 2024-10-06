@@ -4,7 +4,7 @@ import "./GameCard.scss";
 const GameCard = ({ image, title }) => {
   return (
     <Card border="dark" className="border-opacity-0">
-      <Card.Img variant="top" src={image} style={{ borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }} />
+      <Card.Img variant="top" src={image} />
       <Card.Body
         style={{
           backgroundImage: "url(" + image + ")",
