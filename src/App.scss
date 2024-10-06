@@ -5,16 +5,20 @@ $theme-colors: (
   //"secondary": #72f76e,
   "secondary": #a997df,
   "info": #16dfe9,
-  "danger": red,
   "light": #fef9f6,
 );
 
 $blue: #1ad214;
 // Import di bootstrap
 @import "bootstrap/scss/bootstrap";
+
 #root {
   height: 100vh;
 }
+
 body {
   height: 100vh;
+  background-color: #141415;
+  background-image: linear-gradient(180deg, #2F2A3F 0%, #141415 75%);
+  background-repeat: no-repeat;
 }

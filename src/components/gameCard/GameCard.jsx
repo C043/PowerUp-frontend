@@ -18,7 +18,7 @@ const GameCard = ({ image, title }) => {
           <Card.Title>{title}</Card.Title>
           <Card.Text>
             <div className="d-flex justify-content-end">
-              <Button variant="primary" className="rounded rounded-pill ">
+              <Button variant="dark" className="rounded rounded-pill ">
                 Open
               </Button>
             </div>
