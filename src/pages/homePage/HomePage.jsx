@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const [platform, setPlatform] = useState(false)
+  const [search, setSearch] = useState("")
 
   const token = useSelector(state => state.token);
 
@@ -17,6 +18,7 @@ const HomePage = () => {
 
   let url = "http://localhost:3001/games"
   if (platform) url = url + "?platforms=" + platform
+  if (search) url = url + "&search=" + search
 
   const fetchGames = async () => {
     try {
@@ -37,11 +39,11 @@ const HomePage = () => {
   useEffect(() => {
     fetchGames();
     if (!token) navigate("/")
-  }, [platform]);
+  }, [platform, search]);
 
   return (
     <>
-      <NavBar />
+      <NavBar onSearch={query => setSearch(query)} />
       <Container>
         <h1>Home</h1>
         <div className="d-flex">

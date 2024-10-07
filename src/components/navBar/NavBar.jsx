@@ -6,7 +6,7 @@ import "./NavBar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-function NavBar() {
+function NavBar({ onSearch }) {
   const dispatch = useDispatch();
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
