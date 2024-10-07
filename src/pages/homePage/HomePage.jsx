@@ -9,15 +9,14 @@ import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
-  const [page, setPage] = useState(1)
   const [platform, setPlatform] = useState(false)
 
   const token = useSelector(state => state.token);
 
   const navigate = useNavigate()
 
-  let url = "http://localhost:3001/games?page=" + page
-  if (platform) url = url + "&platforms=" + platform
+  let url = "http://localhost:3001/games"
+  if (platform) url = url + "?platforms=" + platform
 
   const fetchGames = async () => {
     try {
@@ -28,27 +27,17 @@ const HomePage = () => {
       });
       if (resp.ok) {
         const data = await resp.json();
-        if (page === 1 || page === 1 && platform) setGames(data.results)
-        else data.results.forEach(game => games.push(game))
+        setGames(data.results)
       } else throw new Error("Fetch error");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleScroll = (e) => {
-    const bottom = e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop === e.target.scrollingElement.clientHeight
-    if (bottom && platform === false) {
-      setPage(() => page + 1)
-    }
-  }
-
-  window.addEventListener("scroll", handleScroll)
-
   useEffect(() => {
     fetchGames();
     if (!token) navigate("/")
-  }, [page, platform]);
+  }, [platform]);
 
   return (
     <>
@@ -61,8 +50,6 @@ const HomePage = () => {
               <SideBar onFilter={(platformId) => {
                 if (platform === platformId) setPlatform(false)
                 else setPlatform(platformId)
-                setPage(1)
-                window.scrollTo(0, 0)
               }}
               />
             </Col>
