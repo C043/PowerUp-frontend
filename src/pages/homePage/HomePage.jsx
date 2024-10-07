@@ -10,20 +10,25 @@ import { useNavigate } from "react-router-dom";
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const [page, setPage] = useState(1)
+  const [platform, setPlatform] = useState(false)
+
   const token = useSelector(state => state.token);
 
   const navigate = useNavigate()
 
+  let url = "http://localhost:3001/games?page=" + page
+  if (platform) url = url + "&platforms=" + platform
+
   const fetchGames = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/games?page=" + page, {
+      const resp = await fetch(url, {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
       if (resp.ok) {
         const data = await resp.json();
-        if (page === 1) setGames(data.results)
+        if (page === 1 || page === 1 && platform) setGames(data.results)
         else data.results.forEach(game => games.push(game))
       } else throw new Error("Fetch error");
     } catch (error) {
@@ -33,7 +38,7 @@ const HomePage = () => {
 
   const handleScroll = (e) => {
     const bottom = e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop === e.target.scrollingElement.clientHeight
-    if (bottom) {
+    if (bottom && platform === false) {
       setPage(() => page + 1)
     }
   }
@@ -43,7 +48,7 @@ const HomePage = () => {
   useEffect(() => {
     fetchGames();
     if (!token) navigate("/")
-  }, [page]);
+  }, [page, platform]);
 
   return (
     <>
@@ -53,7 +58,13 @@ const HomePage = () => {
         <div className="d-flex">
           <Row>
             <Col xs="12">
-              <SideBar />
+              <SideBar onFilter={(platformId) => {
+                if (platform === platformId) setPlatform(false)
+                else setPlatform(platformId)
+                setPage(1)
+                window.scrollTo(0, 0)
+              }}
+              />
             </Col>
           </Row>
           <Row className="mt-3 row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 g-lg-3">

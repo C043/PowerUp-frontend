@@ -1,3 +1,26 @@
 .sideBar {
   top: 10px;
 }
+
+.platformItem {
+  &:hover {
+    background-color: #645789;
+  }
+
+  .mobileIcon {
+    height: 30px;
+  }
+
+  svg {
+    width: 25px;
+    flex: none;
+
+    path {
+      fill: #FEF9F6;
+    }
+  }
+
+  p {
+    white-space: nowrap;
+  }
+}
