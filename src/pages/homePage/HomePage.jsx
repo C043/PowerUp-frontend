@@ -12,7 +12,7 @@ const HomePage = () => {
   const [platform, setPlatform] = useState(false)
   const [search, setSearch] = useState("")
 
-  const token = useSelector(state => state.token);
+  const token = localStorage.getItem("token")
 
   const navigate = useNavigate()
 
