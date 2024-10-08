@@ -13,6 +13,8 @@ const HomePage = () => {
 
   const navigate = useNavigate()
 
+  const token = localStorage.getItem("token")
+
   let url = "http://localhost:3001/games?"
   if (platform) url = url + "&platforms=" + platform
   if (search) url = url + "&search=" + search
