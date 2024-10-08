@@ -5,11 +5,13 @@ import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function NavBar({ onSearch, search }) {
-  const dispatch = useDispatch();
-  const token = useSelector(state => state.token);
-  const user = useSelector(state => state.user);
+  const token = localStorage.getItem("token")
+  const user = JSON.parse(localStorage.getItem("user"))
+
+  const navigate = useNavigate()
 
   const userFetch = async () => {
     try {
@@ -20,15 +22,38 @@ function NavBar({ onSearch, search }) {
       });
       const data = await resp.json();
       if (resp.ok) {
-        dispatch({ type: "USER", payload: data });
+        localStorage.setItem("user", JSON.stringify(data))
       } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  const checkToken = async () => {
+    try {
+      const resp = await fetch("http://localhost:3001/auth/me", {
+        method: "POST",
+        body: JSON.stringify({
+          token: token
+        }),
+        headers: {
+          "Content-type": "application/json",
+        }
+      })
+      if (!resp.ok) {
+        throw new Error("Token error")
+      } else {
+        userFetch();
+      }
+    } catch (error) {
+      console.log(error.message)
+      navigate("/")
+    }
+  }
+
+
   useEffect(() => {
-    userFetch();
+    checkToken()
   }, []);
 
   return (
@@ -43,7 +68,12 @@ function NavBar({ onSearch, search }) {
             <InputGroup.Text id="basic-addon1">
               <Search />
             </InputGroup.Text>
-            <Form.Control value={search} onChange={ev => onSearch(ev.target.value)} placeholder="Search 874.413 games" aria-label="Username" aria-describedby="basic-addon1" />
+            <Form.Control value={search}
+              onChange={ev => onSearch(ev.target.value)}
+              placeholder="Search 874.413 games"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
           </InputGroup>
           <img
             src={"https://ui-avatars.com/api/?name=" + user.username}

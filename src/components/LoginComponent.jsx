@@ -15,7 +15,7 @@ const LoginComponent = () => {
 
   const navigate = useNavigate();
 
-  const registerFetch = async () => {
+  const loginFetch = async () => {
     try {
       const resp = await fetch("http://localhost:3001/auth/login", {
         method: "POST",
@@ -29,7 +29,6 @@ const LoginComponent = () => {
       });
       const data = await resp.json();
       if (resp.ok) {
-        console.log(data);
         setError(false);
         setSuccess(true);
         localStorage.setItem("token", data.token)
@@ -44,7 +43,7 @@ const LoginComponent = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    registerFetch();
+    loginFetch()
   };
   return (
     <Form onSubmit={e => handleSubmit(e)}>

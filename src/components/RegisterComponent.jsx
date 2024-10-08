@@ -33,7 +33,7 @@ const RegisterComponent = () => {
       if (resp.ok) {
         setError(false);
         setSuccess(true);
-        dispatch({ type: "LOGIN", payload: data.token });
+        localStorage.setItem("token", data.token)
         navigate("/home");
       } else throw new Error(data.message);
     } catch (error) {

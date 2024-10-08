@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import GameCard from "../../components/gameCard/GameCard";
 import NavBar from "../../components/navBar/NavBar";
 import { Col, Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import SideBar from "../../components/sideBar/SideBar";
 import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +10,6 @@ const HomePage = () => {
   const [games, setGames] = useState([]);
   const [platform, setPlatform] = useState(false)
   const [search, setSearch] = useState("")
-
-  const token = localStorage.getItem("token")
 
   const navigate = useNavigate()
 
@@ -38,7 +35,6 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchGames();
-    if (!token) navigate("/")
   }, [platform, search]);
 
   return (
