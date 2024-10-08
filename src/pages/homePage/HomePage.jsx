@@ -16,8 +16,8 @@ const HomePage = () => {
 
   const navigate = useNavigate()
 
-  let url = "http://localhost:3001/games"
-  if (platform) url = url + "?platforms=" + platform
+  let url = "http://localhost:3001/games?"
+  if (platform) url = url + "&platforms=" + platform
   if (search) url = url + "&search=" + search
 
   const fetchGames = async () => {
@@ -43,7 +43,7 @@ const HomePage = () => {
 
   return (
     <>
-      <NavBar onSearch={query => setSearch(query)} />
+      <NavBar search={search} onSearch={search => setSearch(search)} />
       <Container>
         <h1>Home</h1>
         <div className="d-flex">
@@ -59,9 +59,9 @@ const HomePage = () => {
               />
             </Col>
           </Row>
-          <Row className="mt-3 row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 g-lg-3">
+          <Row className="mt-3 g-2 g-lg-3">
             {games.map(game => (
-              <Col key={game.id}>
+              <Col xs="12" md="6" lg="3" key={game.id}>
                 <GameCard image={game.background_image} title={game.name} />
               </Col>
             ))}

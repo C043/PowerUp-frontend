@@ -6,7 +6,7 @@ import "./NavBar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-function NavBar({ onSearch }) {
+function NavBar({ onSearch, search }) {
   const dispatch = useDispatch();
   const token = useSelector(state => state.token);
   const user = useSelector(state => state.user);
@@ -43,7 +43,7 @@ function NavBar({ onSearch }) {
             <InputGroup.Text id="basic-addon1">
               <Search />
             </InputGroup.Text>
-            <Form.Control placeholder="Search 874.413 games" aria-label="Username" aria-describedby="basic-addon1" />
+            <Form.Control value={search} onChange={ev => onSearch(ev.target.value)} placeholder="Search 874.413 games" aria-label="Username" aria-describedby="basic-addon1" />
           </InputGroup>
           <img
             src={"https://ui-avatars.com/api/?name=" + user.username}
