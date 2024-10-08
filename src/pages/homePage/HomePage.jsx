@@ -49,9 +49,12 @@ const HomePage = () => {
         <div className="d-flex">
           <Row>
             <Col xs="12">
-              <SideBar onFilter={(platformId) => {
-                if (platform === platformId) setPlatform(false)
-                else setPlatform(platformId)
+              <SideBar platform={platform} onFilter={(platformId) => {
+                if (platform === platformId) {
+                  setPlatform(false)
+                } else {
+                  setPlatform(platformId)
+                }
               }}
               />
             </Col>
