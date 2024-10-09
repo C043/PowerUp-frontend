@@ -5,7 +5,7 @@ const GameCard = ({ image, title }) => {
   return (
     <Card border="dark" className="border-opacity-0">
       <Card.Img variant="top" src={image} className="object-fit-cover" style={{
-        height: "150px"
+        height: "150px",
       }} />
       <Card.Body
         style={{

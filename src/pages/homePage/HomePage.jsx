@@ -44,23 +44,36 @@ const HomePage = () => {
       <NavBar search={search} onSearch={search => setSearch(search)} />
       <Container>
         <h1>Home</h1>
-        <div className="d-flex">
-          <Row>
-            <Col xs="12">
-              <SideBar platform={platform} onFilter={(platformId) => {
-                if (platform === platformId) {
-                  setPlatform(false)
-                } else {
-                  setPlatform(platformId)
-                }
-              }}
-              />
-            </Col>
-          </Row>
-          <Row className="mt-3 g-2 g-lg-3">
+        <div className="d-flex flex-column flex-md-row">
+          <div className="d-none d-md-block">
+            <SideBar platform={platform} onFilter={(platformId) => {
+              if (platform === platformId) {
+                setPlatform(false)
+              } else {
+                setPlatform(platformId)
+              }
+            }}
+            />
+          </div>
+          <div className="d-block d-md-none">
+            <SideBar platform={platform} onFilter={(platformId) => {
+              if (platform === platformId) {
+                setPlatform(false)
+              } else {
+                setPlatform(platformId)
+              }
+            }}
+            />
+          </div>
+          <Row className="w-100 mt-3 g-2">
             {games.map(game => (
               <Col xs="12" md="6" lg="3" key={game.id}>
-                <GameCard image={game.background_image} title={game.name} />
+                <GameCard
+                  image={game.background_image ?
+                    game.background_image :
+                    "https://ui-avatars.com/api/?background=random&name=" + game.name}
+                  title={game.name}
+                />
               </Col>
             ))}
           </Row>
