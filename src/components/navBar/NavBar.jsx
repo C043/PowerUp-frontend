@@ -4,12 +4,12 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NavBar({ onSearch, search }) {
   const token = localStorage.getItem("token")
-  const user = JSON.parse(localStorage.getItem("user"))
+  const [user, setUser] = useState({})
 
   const navigate = useNavigate()
 
@@ -22,7 +22,7 @@ function NavBar({ onSearch, search }) {
       });
       const data = await resp.json();
       if (resp.ok) {
-        localStorage.setItem("user", JSON.stringify(data))
+        setUser(data)
       } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
