@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -9,7 +11,11 @@ const LoginComponent = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const registerFetch = async () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const loginFetch = async () => {
     try {
       const resp = await fetch("http://localhost:3001/auth/login", {
         method: "POST",
@@ -23,9 +29,10 @@ const LoginComponent = () => {
       });
       const data = await resp.json();
       if (resp.ok) {
-        console.log(data);
         setError(false);
         setSuccess(true);
+        localStorage.setItem("token", data.token)
+        navigate("/home");
       } else throw new Error(data.message);
     } catch (error) {
       setError(true);
@@ -36,7 +43,7 @@ const LoginComponent = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    registerFetch();
+    loginFetch()
   };
   return (
     <Form onSubmit={e => handleSubmit(e)}>

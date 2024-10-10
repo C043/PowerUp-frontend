@@ -1,0 +1,19 @@
+.blur {
+  backdrop-filter: brightness(0.9) blur(100px);
+}
+
+.card {
+  transition: all 200ms;
+
+  &:hover {
+    scale: 1.04;
+  }
+}
+
+.truncate {
+  text-overflow: ellipsis;
+
+  /* Needed to make it work */
+  overflow: hidden;
+  white-space: nowrap;
+}
