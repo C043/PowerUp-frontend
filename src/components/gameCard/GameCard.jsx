@@ -1,7 +1,10 @@
 import { Button, Card } from "react-bootstrap";
 import "./GameCard.scss";
+import { useNavigate } from "react-router-dom";
 
-const GameCard = ({ image, title }) => {
+const GameCard = ({ image, title, gameId }) => {
+  const navigate = useNavigate()
+
   return (
     <Card border="dark" className="border-opacity-0">
       <Card.Img variant="top" src={image} className="object-fit-cover" style={{
@@ -20,7 +23,7 @@ const GameCard = ({ image, title }) => {
           <Card.Title className="truncate">{title}</Card.Title>
           <Card.Text>
             <div className="d-flex justify-content-end">
-              <Button variant="dark" className="rounded rounded-pill ">
+              <Button onClick={() => navigate(`/game/${gameId}`)} variant="dark" className="rounded rounded-pill ">
                 Open
               </Button>
             </div>

@@ -87,6 +87,7 @@ const HomePage = () => {
                     game.background_image :
                     "https://ui-avatars.com/api/?background=random&name=" + game.name}
                   title={game.name}
+                  gameId={game.id}
                 />
               </Col>
             ))}
