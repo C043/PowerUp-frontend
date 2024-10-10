@@ -1,6 +1,5 @@
 import { Button, Card } from "react-bootstrap";
 import "./GameCard.scss";
-import Skeleton from "react-loading-skeleton";
 
 const GameCard = ({ image, title }) => {
   return (
@@ -18,7 +17,7 @@ const GameCard = ({ image, title }) => {
         className="imageBg p-0"
       >
         <div className="blur py-3 px-3 rounded-bottom w-100">
-          <Card.Title className="truncate">{title || <Skeleton />}</Card.Title>
+          <Card.Title className="truncate">{title}</Card.Title>
           <Card.Text>
             <div className="d-flex justify-content-end">
               <Button variant="dark" className="rounded rounded-pill ">
