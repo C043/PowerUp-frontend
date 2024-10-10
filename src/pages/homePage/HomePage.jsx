@@ -5,6 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import SideBar from "../../components/sideBar/SideBar";
 import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
+import LoadingGameCard from "../../components/gameCard/LoadingGameCard";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
@@ -66,6 +67,13 @@ const HomePage = () => {
             />
           </div>
           <Row className="w-100 mt-3 g-2">
+            {games.length === 0 &&
+              [...Array(20).keys()].map(index =>
+                <Col xs="12" md="6" lg="3" key={index}>
+                  <LoadingGameCard />
+                </Col>
+              )
+            }
             {games.map(game => (
               <Col xs="12" md="6" lg="3" key={game.id}>
                 <GameCard
