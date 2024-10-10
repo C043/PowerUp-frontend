@@ -1,6 +1,7 @@
 const initialState = {
   token: "",
   user: {},
+  search: "",
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const mainReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+    case "SEARCH":
+      return {
+        ...state,
+        search: action.payload,
+      }
     default:
       return state;
   }

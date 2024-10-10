@@ -3,13 +3,17 @@ import { Search } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-function NavBar({ onSearch, search }) {
+const NavBar = () => {
   const token = localStorage.getItem("token")
   const [user, setUser] = useState({})
+
+  const search = useSelector(state => state.search)
+
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -51,6 +55,10 @@ function NavBar({ onSearch, search }) {
     }
   }
 
+  const handleSubmit = (ev) => {
+    ev.preventDefault()
+    navigate("/home")
+  }
 
   useEffect(() => {
     checkToken()
@@ -64,17 +72,24 @@ function NavBar({ onSearch, search }) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav align-content-between">
-          <InputGroup className=" me-3">
-            <InputGroup.Text id="basic-addon1">
-              <Search />
-            </InputGroup.Text>
-            <Form.Control value={search}
-              onChange={ev => onSearch(ev.target.value)}
-              placeholder="Search 874.413 games"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </InputGroup>
+          <Form className="w-100 me-3" onSubmit={ev => handleSubmit(ev)}>
+            <InputGroup>
+              <InputGroup.Text id="basic-addon1">
+                <Search />
+              </InputGroup.Text>
+              <Form.Control value={search}
+                onChange={ev => {
+                  dispatch({
+                    type: "SEARCH", payload: ev.target.value
+                  })
+                }
+                }
+                placeholder="Search 874.413 games"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </InputGroup>
+          </Form>
           <img
             src={"https://ui-avatars.com/api/?name=" + user.username}
             alt="profile-picture"

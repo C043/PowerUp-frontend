@@ -6,11 +6,13 @@ import SideBar from "../../components/sideBar/SideBar";
 import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import LoadingGameCard from "../../components/gameCard/LoadingGameCard";
+import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const [platform, setPlatform] = useState(false)
-  const [search, setSearch] = useState("")
+
+  const search = useSelector(state => state.search)
 
   const navigate = useNavigate()
 
@@ -42,7 +44,11 @@ const HomePage = () => {
 
   return (
     <>
-      <NavBar search={search} onSearch={search => setSearch(search)} />
+      <NavBar search={search} onSearch={search => {
+        navigate("/home")
+        setSearch(search)
+      }}
+      />
       <Container>
         <h1>Home</h1>
         <div className="d-flex flex-column flex-md-row">
