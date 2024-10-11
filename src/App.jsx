@@ -3,6 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/landingPage/LandingPage";
 import HomePage from "./pages/homePage/HomePage";
+import GamePage from "./pages/gamePage/GamePage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/game/:gameId" element={<GamePage />} />
       </Routes>
     </BrowserRouter>
   );
