@@ -11,10 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const [platform, setPlatform] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const search = useSelector(state => state.search)
-
-  const navigate = useNavigate()
 
   const token = localStorage.getItem("token")
 
@@ -32,6 +31,7 @@ const HomePage = () => {
       if (resp.ok) {
         const data = await resp.json();
         setGames(data.results)
+        setIsLoaded(true)
       } else throw new Error("Fetch error");
     } catch (error) {
       console.log(error);
@@ -69,12 +69,14 @@ const HomePage = () => {
             />
           </div>
           <Row className="w-100 mt-3 g-2">
-            {games.length === 0 &&
+            {games.length === 0 && isLoaded === false &&
               [...Array(20).keys()].map(index =>
                 <Col xs="12" md="6" lg="3" key={index}>
                   <LoadingGameCard />
                 </Col>
               )
+            }
+            {games.length === 0 && isLoaded === true && <p className="h5">Sorry, no games here 😰</p>
             }
             {games.map(game => (
               <Col xs="12" md="6" lg="3" key={game.id}>

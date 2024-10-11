@@ -1,3 +1,4 @@
+import Footer from "../../components/footer/Footer.jsx"
 import { useEffect, useState } from "react"
 import { Col, Container, Row } from "react-bootstrap"
 import LoadingGameCard from "../../components/gameCard/LoadingGameCard"
@@ -69,6 +70,7 @@ const ListPage = ({ listType }) => {
                 ))}
             </Row>
         </Container>
+        <Footer />
     </>
 }
 
