@@ -44,11 +44,7 @@ const HomePage = () => {
 
   return (
     <>
-      <NavBar search={search} onSearch={search => {
-        navigate("/home")
-        setSearch(search)
-      }}
-      />
+      <NavBar />
       <Container>
         <h1>Home</h1>
         <div className="d-flex flex-column flex-md-row">

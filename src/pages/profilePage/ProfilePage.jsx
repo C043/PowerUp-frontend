@@ -2,9 +2,12 @@ import "./ProfilePage.scss"
 import { Button, Container } from "react-bootstrap"
 import NavBar from "../../components/navBar/NavBar"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const ProfilePage = () => {
     const user = useSelector(state => state.user)
+
+    const navigate = useNavigate()
 
     return <>
         <NavBar />
@@ -16,6 +19,7 @@ const ProfilePage = () => {
                     <div className="d-flex gap-2 ">
                         <Button
                             className="rounded rounded-pill" variant="info"
+                            onClick={() => navigate("/backlog")}
                         >
                             Backlog
                         </Button>

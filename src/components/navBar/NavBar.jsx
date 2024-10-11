@@ -30,7 +30,6 @@ const NavBar = () => {
           type: "USER",
           payload: data
         })
-        console.log(data)
       } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
@@ -52,7 +51,6 @@ const NavBar = () => {
         throw new Error("Token error")
       } else {
         fetchUser();
-        console.log(user)
       }
     } catch (error) {
       console.log(error.message)
