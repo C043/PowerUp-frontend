@@ -1,3 +1,4 @@
+import "./GamePage.scss"
 import { Container } from "react-bootstrap"
 import NavBar from "../../components/navBar/NavBar"
 import { useParams } from "react-router-dom"
@@ -34,7 +35,7 @@ const GamePage = () => {
 		<Container>
 			{game &&
 				<>
-					<GameCover cover={game.background_image} />
+					<GameCover cover={game.background_image_additional} />
 					<div dangerouslySetInnerHTML={{ __html: game.description }} />
 				</>
 			}
