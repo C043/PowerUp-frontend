@@ -91,9 +91,11 @@ const NavBar = () => {
             </InputGroup>
           </Form>
           <img
+            role="button"
             src={"https://ui-avatars.com/api/?name=" + user.username}
             alt="profile-picture"
             className="rounded rounded-circle propic border border-color-primary"
+            onClick={() => navigate("/user")}
           />
         </Navbar.Collapse>
       </Container>
