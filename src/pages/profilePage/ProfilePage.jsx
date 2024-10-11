@@ -25,11 +25,13 @@ const ProfilePage = () => {
                         </Button>
                         <Button
                             className="rounded rounded-pill" variant="danger"
+                            onClick={() => navigate("/playing")}
                         >
                             Playing
                         </Button>
                         <Button
                             className="rounded rounded-pill"
+                            onClick={() => navigate("/played")}
                         >
                             Played
                         </Button>

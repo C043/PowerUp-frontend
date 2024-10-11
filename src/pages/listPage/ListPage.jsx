@@ -33,7 +33,7 @@ const ListPage = ({ listType }) => {
             })
             if (resp.ok) {
                 const data = await resp.json()
-                setGames([...games, data])
+                setGames(games => [...games, data])
             } else throw new Error(resp.message)
         } catch (error) {
             console.log(error.message)
@@ -47,7 +47,7 @@ const ListPage = ({ listType }) => {
     return <>
         <NavBar />
         <Container>
-            <h1>{listType}</h1>
+            <h1>{listType[0].toUpperCase().concat(listType.slice(1))}</h1>
             <Row className="w-100 mt-3 g-2">
                 {games.length === 0 &&
                     [...Array(20).keys()].map(index =>
