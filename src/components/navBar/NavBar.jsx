@@ -9,15 +9,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
   const token = localStorage.getItem("token")
-  const [user, setUser] = useState({})
 
+  const user = useSelector(state => state.user)
   const search = useSelector(state => state.search)
 
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
-  const userFetch = async () => {
+  const fetchUser = async () => {
     try {
       const resp = await fetch("http://localhost:3001/users", {
         headers: {
@@ -26,7 +26,11 @@ const NavBar = () => {
       });
       const data = await resp.json();
       if (resp.ok) {
-        setUser(data)
+        dispatch({
+          type: "USER",
+          payload: data
+        })
+        console.log(data)
       } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
@@ -47,7 +51,8 @@ const NavBar = () => {
       if (!resp.ok) {
         throw new Error("Token error")
       } else {
-        userFetch();
+        fetchUser();
+        console.log(user)
       }
     } catch (error) {
       console.log(error.message)
@@ -92,7 +97,7 @@ const NavBar = () => {
           </Form>
           <img
             role="button"
-            src={"https://ui-avatars.com/api/?name=" + user.username}
+            src={user.avatar}
             alt="profile-picture"
             className="rounded rounded-circle propic border border-color-primary"
             onClick={() => navigate("/user")}
