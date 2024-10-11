@@ -141,10 +141,10 @@ const GamePage = () => {
 									Played
 								</Button>
 							</div>
+							<h2 className="mt-3">Description</h2>
+							<div dangerouslySetInnerHTML={{ __html: game.description }} />
 						</div>
 					</div>
-					<h2 className="mt-3">Description</h2>
-					<div dangerouslySetInnerHTML={{ __html: game.description }} />
 				</>
 			}
 		</Container>
