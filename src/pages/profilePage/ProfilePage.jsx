@@ -19,7 +19,7 @@ const ProfilePage = () => {
                     <h1>{user.username}</h1>
                     <div className="d-flex gap-2 ">
                         <Button
-                            className="rounded rounded-pill" variant="info"
+                            className="rounded rounded-pill" variant="secondary"
                             onClick={() => navigate("/backlog")}
                         >
                             Backlog

@@ -114,7 +114,7 @@ const GamePage = () => {
 							<h1>{game.name}</h1>
 							<div className="buttons position-sticky d-flex gap-3">
 								<Button
-									className="rounded rounded-pill" variant="info"
+									className="rounded rounded-pill" variant="secondary"
 									onClick={() => addToList("backlog")}
 									disabled={
 										backlog
