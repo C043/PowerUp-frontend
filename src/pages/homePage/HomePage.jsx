@@ -46,7 +46,7 @@ const HomePage = () => {
     <>
       <NavBar />
       <Container>
-        <h1>Home</h1>
+        <h1>{search ? "Search" : "Home"}</h1>
         <div className="d-flex flex-column flex-md-row">
           <div className="d-none d-md-block">
             <SideBar platform={platform} onFilter={(platformId) => {
