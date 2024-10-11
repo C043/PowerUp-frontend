@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import GameCover from "../../components/gameCover/GameCover"
 import Footer from "../../components/footer/Footer"
+import { CheckCircle, Controller, Substack } from "react-bootstrap-icons"
 
 const GamePage = () => {
 	const params = useParams()
@@ -120,7 +121,7 @@ const GamePage = () => {
 										backlog
 									}
 								>
-									Backlog
+									<Substack className="mb-1 me-1" />Backlog
 								</Button>
 								<Button
 									className="rounded rounded-pill" variant="danger"
@@ -129,7 +130,7 @@ const GamePage = () => {
 										playing
 									}
 								>
-									Playing
+									<Controller className="mb-1 me-1" />Playing
 								</Button>
 								<Button
 									className="rounded rounded-pill"
@@ -138,7 +139,7 @@ const GamePage = () => {
 										played
 									}
 								>
-									Played
+									<CheckCircle className="mb-1 me-1" />Played
 								</Button>
 							</div>
 							<h2 className="mt-3">Description</h2>
@@ -147,7 +148,7 @@ const GamePage = () => {
 					</div>
 				</>
 			}
-		</Container>
+		</Container >
 		<Footer />
 	</>
 }

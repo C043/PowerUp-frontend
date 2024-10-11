@@ -3,6 +3,7 @@ import { Button, Container } from "react-bootstrap"
 import NavBar from "../../components/navBar/NavBar"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { CheckCircle, Controller, Substack } from "react-bootstrap-icons"
 
 const ProfilePage = () => {
     const user = useSelector(state => state.user)
@@ -22,19 +23,19 @@ const ProfilePage = () => {
                             className="rounded rounded-pill" variant="secondary"
                             onClick={() => navigate("/backlog")}
                         >
-                            Backlog
+                            <Substack className="mb-1 me-1" />Backlog
                         </Button>
                         <Button
                             className="rounded rounded-pill" variant="danger"
                             onClick={() => navigate("/playing")}
                         >
-                            Playing
+                            <Controller className="mb-1 me-1" />Playing
                         </Button>
                         <Button
                             className="rounded rounded-pill"
                             onClick={() => navigate("/played")}
                         >
-                            Played
+                            <CheckCircle className="mb-1 me-1" />Played
                         </Button>
                     </div>
                 </div>
