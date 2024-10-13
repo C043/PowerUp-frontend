@@ -15,8 +15,10 @@ const ProfilePage = () => {
         <Container>
             <div className="d-flex flex-column flex-md-row align-items-center 
                 align-items-md-start gap-3 mt-3">
-                <img src={user.avatar} className="bigPropic rounded rounded-circle" />
-                <div className="d-flex flex-column align-items-center align-items-md-start">
+                <img src={user.avatar} className="bigPropic rounded
+                    rounded-circle" />
+                <div className="d-flex flex-column align-items-center
+                    align-items-md-start">
                     <h1>{user.username}</h1>
                     <div className="d-flex gap-2 ">
                         <Button

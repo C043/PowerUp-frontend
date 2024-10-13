@@ -4,9 +4,8 @@ import NavBar from "../../components/navBar/NavBar";
 import { Col, Container, Row } from "react-bootstrap";
 import SideBar from "../../components/sideBar/SideBar";
 import Footer from "../../components/footer/Footer";
-import { useNavigate } from "react-router-dom";
 import LoadingGameCard from "../../components/gameCard/LoadingGameCard";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
@@ -76,7 +75,8 @@ const HomePage = () => {
                 </Col>
               )
             }
-            {games.length === 0 && isLoaded === true && <p className="h5">Sorry, no games here 😰</p>
+            {games.length === 0 && isLoaded === true && <p className="h5">Sorry,
+              no games here 😰</p>
             }
             {games.map(game => (
               <Col xs="12" md="6" lg="3" key={game.id}>
