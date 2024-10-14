@@ -7,6 +7,8 @@ import NavBar from "../../components/navBar/NavBar"
 
 const ListPage = ({ listType }) => {
     const [games, setGames] = useState([])
+    const [isLoaded, setIsLoaded] = useState(false)
+
     const token = localStorage.getItem("token")
 
     const fetchGames = async () => {
@@ -18,7 +20,8 @@ const ListPage = ({ listType }) => {
             })
             if (resp.ok) {
                 const data = await resp.json()
-                data.forEach(game => fetchSingleGame(game.gameId))
+                if (data.length > 0) data.forEach(game => fetchSingleGame(game.gameId))
+                else setIsLoaded(true)
             } else throw new Error(resp.message)
         } catch (error) {
             console.log(error.message)
@@ -49,8 +52,14 @@ const ListPage = ({ listType }) => {
         <NavBar />
         <Container>
             <h1>{listType[0].toUpperCase().concat(listType.slice(1))}</h1>
+            {games.length === 0 && isLoaded === true &&
+                <>
+                    <p className="h5">Sorry, no games here 😰</p>
+                    <p className="h5">Add some first</p>
+                </>
+            }
             <Row className="w-100 mt-3 g-2">
-                {games.length === 0 &&
+                {games.length === 0 && isLoaded === false &&
                     [...Array(20).keys()].map(index =>
                         <Col xs="12" md="6" lg="3" key={index}>
                             <LoadingGameCard />
