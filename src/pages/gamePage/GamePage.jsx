@@ -1,5 +1,5 @@
 import "./GamePage.scss"
-import { Container, Button } from "react-bootstrap"
+import { Container, Button, Form } from "react-bootstrap"
 import NavBar from "../../components/navBar/NavBar"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -145,7 +145,13 @@ const GamePage = () => {
 											backlog
 										}
 									>
-										<Substack className="mb-1 me-1" />Backlog
+										<div className="d-flex gap-1">
+											<Form.Check
+												type={"checkbox"}
+												checked={backlog}
+											/>
+											Backlog
+										</div>
 									</Button>
 								</div>
 								<div role="button" onClick={() => {
@@ -162,7 +168,13 @@ const GamePage = () => {
 											playing
 										}
 									>
-										<Controller className="mb-1 me-1" />Playing
+										<div className="d-flex gap-1">
+											<Form.Check
+												type={"checkbox"}
+												checked={playing}
+											/>
+											Playing
+										</div>
 									</Button>
 								</div>
 								<div role="button" onClick={() => {
@@ -180,7 +192,13 @@ const GamePage = () => {
 											played
 										}
 									>
-										<CheckCircle className="mb-1 me-1" />Played
+										<div className="d-flex gap-1">
+											<Form.Check
+												type={"checkbox"}
+												checked={played}
+											/>
+											Played
+										</div>
 									</Button>
 								</div>
 							</div>
