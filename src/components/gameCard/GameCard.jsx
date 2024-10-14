@@ -23,7 +23,8 @@ const GameCard = ({ image, title, gameId }) => {
           <Card.Title className="truncate">{title}</Card.Title>
           <Card.Text>
             <div className="d-flex justify-content-end">
-              <Button onClick={() => navigate(`/game/${gameId}`)} variant="dark" className="rounded rounded-pill ">
+              <Button onClick={() => navigate(`/game/${gameId}`)} variant="dark"
+                className="rounded rounded-pill ">
                 Open
               </Button>
             </div>

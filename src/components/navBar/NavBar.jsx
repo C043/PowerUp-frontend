@@ -3,21 +3,21 @@ import { Search } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
   const token = localStorage.getItem("token")
-  const [user, setUser] = useState({})
 
+  const user = useSelector(state => state.user)
   const search = useSelector(state => state.search)
 
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
-  const userFetch = async () => {
+  const fetchUser = async () => {
     try {
       const resp = await fetch("http://localhost:3001/users", {
         headers: {
@@ -26,7 +26,10 @@ const NavBar = () => {
       });
       const data = await resp.json();
       if (resp.ok) {
-        setUser(data)
+        dispatch({
+          type: "USER",
+          payload: data
+        })
       } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
@@ -47,7 +50,7 @@ const NavBar = () => {
       if (!resp.ok) {
         throw new Error("Token error")
       } else {
-        userFetch();
+        fetchUser();
       }
     } catch (error) {
       console.log(error.message)
@@ -67,7 +70,13 @@ const NavBar = () => {
   return (
     <Navbar className="bg-body-dark pt-3">
       <Container>
-        <Navbar.Brand role="button" onClick={() => navigate("/home")}>
+        <Navbar.Brand role="button" onClick={() => {
+          navigate("/home")
+          dispatch({
+            type: "SEARCH", payload: ""
+          })
+        }
+        }>
           Game <span className="text-primary">Vault</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -91,9 +100,11 @@ const NavBar = () => {
             </InputGroup>
           </Form>
           <img
-            src={"https://ui-avatars.com/api/?name=" + user.username}
+            role="button"
+            src={user.avatar}
             alt="profile-picture"
-            className="rounded rounded-circle propic border border-color-primary"
+            className="border-0 rounded rounded-circle propic border border-color-primary"
+            onClick={() => navigate("/user")}
           />
         </Navbar.Collapse>
       </Container>

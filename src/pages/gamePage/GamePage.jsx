@@ -1,10 +1,11 @@
 import "./GamePage.scss"
-import { Container, Button } from "react-bootstrap"
+import { Container, Button, Form } from "react-bootstrap"
 import NavBar from "../../components/navBar/NavBar"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import GameCover from "../../components/gameCover/GameCover"
 import Footer from "../../components/footer/Footer"
+import { CheckCircle, Controller, Substack } from "react-bootstrap-icons"
 
 const GamePage = () => {
 	const params = useParams()
@@ -50,6 +51,24 @@ const GamePage = () => {
 				fetchLists("playing")
 				fetchLists("played")
 			} else throw new Error(resp.message)
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+
+	const removeFromList = async list => {
+		try {
+			const resp = await fetch(`http://localhost:3001/lists/${list}/${game.id}`, {
+				method: "DELETE",
+				headers: {
+					"Authorization": "Bearer " + token,
+				}
+			})
+			if (resp.ok) {
+				fetchLists("backlog")
+				fetchLists("playing")
+				fetchLists("played")
+			}
 		} catch (error) {
 			console.log(error.message)
 		}
@@ -113,33 +132,75 @@ const GamePage = () => {
 						<div className="d-flex flex-column ">
 							<h1>{game.name}</h1>
 							<div className="buttons position-sticky d-flex gap-3">
-								<Button
-									className="rounded rounded-pill" variant="info"
-									onClick={() => addToList("backlog")}
-									disabled={
-										backlog
+								<div role="button" onClick={() => {
+									if (!backlog) addToList("backlog")
+									else {
+										removeFromList("backlog")
+										setBacklog(false)
 									}
-								>
-									Backlog
-								</Button>
-								<Button
-									className="rounded rounded-pill" variant="danger"
-									onClick={() => addToList("playing")}
-									disabled={
-										playing
+								}}>
+									<Button
+										className="rounded rounded-pill" variant="secondary"
+										disabled={
+											backlog
+										}
+									>
+										<div className="d-flex gap-1">
+											<Form.Check
+												type={"checkbox"}
+												checked={backlog}
+											/>
+											Backlog
+										</div>
+									</Button>
+								</div>
+								<div role="button" onClick={() => {
+									if (!playing) addToList("playing")
+									else {
+										removeFromList("playing")
+										setPlaying(false)
 									}
-								>
-									Playing
-								</Button>
-								<Button
-									className="rounded rounded-pill"
-									onClick={() => addToList("played")}
-									disabled={
-										played
+								}
+								}>
+									<Button
+										className="rounded rounded-pill" variant="danger"
+										disabled={
+											playing
+										}
+									>
+										<div className="d-flex gap-1">
+											<Form.Check
+												type={"checkbox"}
+												checked={playing}
+											/>
+											Playing
+										</div>
+									</Button>
+								</div>
+								<div role="button" onClick={() => {
+									if (!played) addToList("played")
+									else {
+										removeFromList("played")
+										setPlayed(false)
 									}
+								}
+								}
 								>
-									Played
-								</Button>
+									<Button
+										className="rounded rounded-pill"
+										disabled={
+											played
+										}
+									>
+										<div className="d-flex gap-1">
+											<Form.Check
+												type={"checkbox"}
+												checked={played}
+											/>
+											Played
+										</div>
+									</Button>
+								</div>
 							</div>
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
@@ -147,7 +208,7 @@ const GamePage = () => {
 					</div>
 				</>
 			}
-		</Container>
+		</Container >
 		<Footer />
 	</>
 }
