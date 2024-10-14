@@ -3,7 +3,7 @@ import { Search } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -97,7 +97,7 @@ const NavBar = () => {
             role="button"
             src={user.avatar}
             alt="profile-picture"
-            className="rounded rounded-circle propic border border-color-primary"
+            className="border-0 rounded rounded-circle propic border border-color-primary"
             onClick={() => navigate("/user")}
           />
         </Navbar.Collapse>
