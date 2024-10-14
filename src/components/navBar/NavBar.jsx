@@ -70,7 +70,13 @@ const NavBar = () => {
   return (
     <Navbar className="bg-body-dark pt-3">
       <Container>
-        <Navbar.Brand role="button" onClick={() => navigate("/home")}>
+        <Navbar.Brand role="button" onClick={() => {
+          navigate("/home")
+          dispatch({
+            type: "SEARCH", payload: ""
+          })
+        }
+        }>
           Game <span className="text-primary">Vault</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
