@@ -1,6 +1,5 @@
 
 import { Button, Card, Placeholder } from "react-bootstrap";
-import Skeleton from "react-loading-skeleton";
 
 const LoadingGameCard = ({ image, title }) => {
   return (
