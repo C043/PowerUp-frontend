@@ -56,6 +56,24 @@ const GamePage = () => {
 		}
 	}
 
+	const removeFromList = async list => {
+		try {
+			const resp = await fetch(`http://localhost:3001/lists/${list}/${game.id}`, {
+				method: "DELETE",
+				headers: {
+					"Authorization": "Bearer " + token,
+				}
+			})
+			if (resp.ok) {
+				fetchLists("backlog")
+				fetchLists("playing")
+				fetchLists("played")
+			}
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+
 	const fetchLists = async (list) => {
 		try {
 			const resp = await fetch(`http://localhost:3001/lists/${list}`, {
@@ -114,33 +132,57 @@ const GamePage = () => {
 						<div className="d-flex flex-column ">
 							<h1>{game.name}</h1>
 							<div className="buttons position-sticky d-flex gap-3">
-								<Button
-									className="rounded rounded-pill" variant="secondary"
-									onClick={() => addToList("backlog")}
-									disabled={
-										backlog
+								<div role="button" onClick={() => {
+									if (!backlog) addToList("backlog")
+									else {
+										removeFromList("backlog")
+										setBacklog(false)
 									}
-								>
-									<Substack className="mb-1 me-1" />Backlog
-								</Button>
-								<Button
-									className="rounded rounded-pill" variant="danger"
-									onClick={() => addToList("playing")}
-									disabled={
-										playing
+								}}>
+									<Button
+										className="rounded rounded-pill" variant="secondary"
+										disabled={
+											backlog
+										}
+									>
+										<Substack className="mb-1 me-1" />Backlog
+									</Button>
+								</div>
+								<div role="button" onClick={() => {
+									if (!playing) addToList("playing")
+									else {
+										removeFromList("playing")
+										setPlaying(false)
 									}
-								>
-									<Controller className="mb-1 me-1" />Playing
-								</Button>
-								<Button
-									className="rounded rounded-pill"
-									onClick={() => addToList("played")}
-									disabled={
-										played
+								}
+								}>
+									<Button
+										className="rounded rounded-pill" variant="danger"
+										disabled={
+											playing
+										}
+									>
+										<Controller className="mb-1 me-1" />Playing
+									</Button>
+								</div>
+								<div role="button" onClick={() => {
+									if (!played) addToList("played")
+									else {
+										removeFromList("played")
+										setPlayed(false)
 									}
+								}
+								}
 								>
-									<CheckCircle className="mb-1 me-1" />Played
-								</Button>
+									<Button
+										className="rounded rounded-pill"
+										disabled={
+											played
+										}
+									>
+										<CheckCircle className="mb-1 me-1" />Played
+									</Button>
+								</div>
 							</div>
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
