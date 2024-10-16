@@ -77,7 +77,7 @@ const GameNotesComponent = ({ gameId }) => {
                 <Modal.Title>Notes</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form.Group className="mb-3" controlId="notesTextArea">
+                <Form.Group className="mb-3 notesTextArea" controlId="notesTextArea">
                     <Form.Control as="textarea" rows={5} value={notes} onChange={ev => setNotes(ev.target.value)} />
                 </Form.Group>
             </Modal.Body>

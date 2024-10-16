@@ -141,14 +141,12 @@ const GamePage = () => {
 								}}>
 									<Button
 										className="rounded rounded-pill" variant="secondary"
-										disabled={
-											backlog
-										}
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
 												type={"radio"}
 												checked={backlog}
+												readOnly
 											/>
 											Backlog
 										</div>
@@ -164,14 +162,12 @@ const GamePage = () => {
 								}>
 									<Button
 										className="rounded rounded-pill" variant="danger"
-										disabled={
-											playing
-										}
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
 												type={"radio"}
 												checked={playing}
+												readOnly
 											/>
 											Playing
 										</div>
@@ -188,14 +184,12 @@ const GamePage = () => {
 								>
 									<Button
 										className="rounded rounded-pill"
-										disabled={
-											played
-										}
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
 												type={"radio"}
 												checked={played}
+												readOnly
 											/>
 											Played
 										</div>
