@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import GameCover from "../../components/gameCover/GameCover"
 import Footer from "../../components/footer/Footer"
-import { CheckCircle, Controller, Substack } from "react-bootstrap-icons"
+import GameNotesComponent from "../gameNotes/GameNotesComponent"
 
 const GamePage = () => {
 	const params = useParams()
@@ -129,7 +129,7 @@ const GamePage = () => {
 						align-items-md-start gap-4 mt-5"
 					>
 						<img src={game.background_image} className="gameImage" />
-						<div className="d-flex flex-column ">
+						<div className="d-flex flex-column align-items-start">
 							<h1>{game.name}</h1>
 							<div className="buttons position-sticky d-flex gap-3">
 								<div role="button" onClick={() => {
@@ -141,14 +141,12 @@ const GamePage = () => {
 								}}>
 									<Button
 										className="rounded rounded-pill" variant="secondary"
-										disabled={
-											backlog
-										}
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
-												type={"checkbox"}
+												type={"radio"}
 												checked={backlog}
+												readOnly
 											/>
 											Backlog
 										</div>
@@ -164,14 +162,12 @@ const GamePage = () => {
 								}>
 									<Button
 										className="rounded rounded-pill" variant="danger"
-										disabled={
-											playing
-										}
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
-												type={"checkbox"}
+												type={"radio"}
 												checked={playing}
+												readOnly
 											/>
 											Playing
 										</div>
@@ -188,14 +184,12 @@ const GamePage = () => {
 								>
 									<Button
 										className="rounded rounded-pill"
-										disabled={
-											played
-										}
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
-												type={"checkbox"}
+												type={"radio"}
 												checked={played}
+												readOnly
 											/>
 											Played
 										</div>
@@ -204,6 +198,7 @@ const GamePage = () => {
 							</div>
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
+							<GameNotesComponent gameId={params.gameId} />
 						</div>
 					</div>
 				</>

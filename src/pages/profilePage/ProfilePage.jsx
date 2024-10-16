@@ -110,7 +110,7 @@ const ProfilePage = () => {
                 </div>
             </div>
         </Container>
-        <Modal show={show} onHide={handleClose}>
+        <Modal className="editProfileModal" show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Edit Profile Picture</Modal.Title>
             </Modal.Header>
