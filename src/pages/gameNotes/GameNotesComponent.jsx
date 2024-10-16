@@ -15,24 +15,48 @@ const GameNotesComponent = ({ gameId }) => {
         setShow(true)
     }
 
-    const handleSubmit = ev => {
-        ev.preventDefault()
-    }
-
     const fetchNotes = async () => {
         try {
             const resp = await fetch("http://localhost:3001/notes/" + gameId, {
                 headers: {
-                    "Authorization": "Bearer " + token
+                    "Authorization": "Bearer " + token,
                 },
             })
+            const data = await resp.json()
             if (resp.ok) {
-                const data = await resp.json()
-                setNotes(data)
-            } else throw new Error(resp.message)
+                setNotes(data.notes)
+            } else throw new Error(data.message)
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
         }
+    }
+
+    const writeNotes = async () => {
+        try {
+            const resp = await fetch("http://localhost:3001/notes", {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    notes: notes,
+                    gameId: gameId,
+                }),
+            })
+            const data = await resp.json()
+            if (resp.ok) {
+                fetchNotes()
+            } else throw new Error(data.message)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleSubmit = ev => {
+        ev.preventDefault()
+        handleClose()
+        writeNotes()
     }
 
     useEffect(() => {
@@ -42,10 +66,10 @@ const GameNotesComponent = ({ gameId }) => {
         <p className="h2">Notes</p>
         {notes ?
             <>
-                <p>{notes.notes}</p>
+                <p>{notes}</p>
                 <Button onClick={handleShow}>Edit Notes</Button>
             </> :
-            <Button>Add Notes</Button>
+            <Button onClick={handleShow}>Add Notes</Button>
         }
         <Modal className="notesModal" show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -53,8 +77,7 @@ const GameNotesComponent = ({ gameId }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form.Group className="mb-3" controlId="notesTextArea">
-                    <Form.Label>Example textarea</Form.Label>
-                    <Form.Control as="textarea" rows={5} />
+                    <Form.Control as="textarea" rows={5} value={notes} onChange={ev => setNotes(ev.target.value)} />
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
