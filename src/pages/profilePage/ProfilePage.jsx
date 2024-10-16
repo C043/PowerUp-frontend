@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { CheckCircle, Controller, Pencil, Substack } from "react-bootstrap-icons"
 import { useState } from "react"
+import AllGamesComponent from "../../components/allGamesComponent/AllGamesComponent"
+import Footer from "../../components/footer/Footer"
 
 const ProfilePage = () => {
     const [show, setShow] = useState(false)
@@ -109,6 +111,8 @@ const ProfilePage = () => {
                     </div>
                 </div>
             </div>
+            <AllGamesComponent />
+            <Footer />
         </Container>
         <Modal className="editProfileModal" show={show} onHide={handleClose}>
             <Modal.Header closeButton>

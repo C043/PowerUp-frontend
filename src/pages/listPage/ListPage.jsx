@@ -18,11 +18,11 @@ const ListPage = ({ listType }) => {
                     "Authorization": "Bearer " + token
                 },
             })
+            const data = await resp.json()
             if (resp.ok) {
-                const data = await resp.json()
                 if (data.length > 0) data.forEach(game => fetchSingleGame(game.gameId))
                 else setIsLoaded(true)
-            } else throw new Error(resp.message)
+            } else throw new Error(data.message)
         } catch (error) {
             console.log(error.message)
         }
