@@ -1,3 +1,4 @@
+import "./GameNotesComponent.scss"
 import { useEffect, useState } from "react"
 import { Button, Form, Modal } from "react-bootstrap"
 
@@ -66,7 +67,7 @@ const GameNotesComponent = ({ gameId }) => {
         <p className="h2">Notes</p>
         {notes ?
             <>
-                <p>{notes}</p>
+                <p className="gameNotes">{notes}</p>
                 <Button onClick={handleShow}>Edit Notes</Button>
             </> :
             <Button onClick={handleShow}>Add Notes</Button>
