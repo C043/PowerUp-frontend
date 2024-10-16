@@ -15,6 +15,8 @@ const GamePage = () => {
 	const [backlog, setBacklog] = useState(false)
 	const [playing, setPlaying] = useState(false)
 	const [played, setPlayed] = useState(false)
+	const [rating, setRating] = useState(0)
+	const [list, setList] = useState("")
 
 	const fetchGame = async () => {
 		try {
@@ -40,7 +42,8 @@ const GamePage = () => {
 			const resp = await fetch(`http://localhost:3001/lists/${list}`, {
 				method: "POST",
 				body: JSON.stringify({
-					gameId: game.id
+					gameId: game.id,
+					userRating: rating
 				}),
 				headers: {
 					"Authorization": `Bearer ${token}`,
@@ -93,18 +96,25 @@ const GamePage = () => {
 							setBacklog(true)
 							setPlayed(false)
 							setPlaying(false)
+							setRating(isPresent[0].userRating)
+							setList("backlog")
+							console.log(list)
 							break
 						}
 						case "playing": {
 							setPlaying(true)
 							setBacklog(false)
 							setPlayed(false)
+							setRating(isPresent[0].userRating)
+							setList("playing")
 							break
 						}
 						case "played": {
 							setPlayed(true)
 							setBacklog(false)
 							setPlaying(false)
+							setRating(isPresent[0].userRating)
+							setList("played")
 							break
 						}
 					}
@@ -137,6 +147,7 @@ const GamePage = () => {
 									if (!backlog) addToList("backlog")
 									else {
 										removeFromList("backlog")
+										setList("")
 										setBacklog(false)
 									}
 								}}>
@@ -157,6 +168,7 @@ const GamePage = () => {
 									if (!playing) addToList("playing")
 									else {
 										removeFromList("playing")
+										setList("")
 										setPlaying(false)
 									}
 								}
@@ -178,6 +190,7 @@ const GamePage = () => {
 									if (!played) addToList("played")
 									else {
 										removeFromList("played")
+										setList("")
 										setPlayed(false)
 									}
 								}
@@ -197,7 +210,11 @@ const GamePage = () => {
 									</Button>
 								</div>
 							</div>
-							<RatingComponent gameId={params.gameId} />
+							{list && <RatingComponent
+								list={list}
+								ratingSetter={(rat) => setRating(rat)}
+								userRating={rating} gameId={params.gameId}
+							/>}
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
 							<GameNotesComponent gameId={params.gameId} />
