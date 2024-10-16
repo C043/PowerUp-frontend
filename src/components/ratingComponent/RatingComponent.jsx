@@ -21,7 +21,6 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
         })
       })
       const data = await resp.json()
-      console.log(data)
       if (!resp.ok) throw new Error(data.message)
     } catch (error) {
       console.log(error.message)
@@ -29,7 +28,6 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
   }
 
   const handleRating = rat => {
-    console.log(list)
     if (rating === rat) {
       setRating(0)
       ratingSetter(0)

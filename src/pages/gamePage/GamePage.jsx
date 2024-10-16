@@ -98,7 +98,6 @@ const GamePage = () => {
 							setPlaying(false)
 							setRating(isPresent[0].userRating)
 							setList("backlog")
-							console.log(list)
 							break
 						}
 						case "playing": {
