@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import GameCover from "../../components/gameCover/GameCover"
 import Footer from "../../components/footer/Footer"
 import GameNotesComponent from "../gameNotes/GameNotesComponent"
+import RatingComponent from "../../components/ratingComponent/RatingComponent"
 
 const GamePage = () => {
 	const params = useParams()
@@ -196,6 +197,7 @@ const GamePage = () => {
 									</Button>
 								</div>
 							</div>
+							<RatingComponent gameId={params.gameId} />
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
 							<GameNotesComponent gameId={params.gameId} />
