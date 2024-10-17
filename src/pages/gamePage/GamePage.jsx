@@ -141,7 +141,7 @@ const GamePage = () => {
 						<img src={game.background_image} className="gameImage" />
 						<div className="d-flex flex-column align-items-start">
 							<h1>{game.name}</h1>
-							<div className="buttons position-sticky d-flex gap-3">
+							<div className="buttons d-flex gap-3">
 								<div role="button" onClick={() => {
 									if (!backlog) addToList("backlog")
 									else {
