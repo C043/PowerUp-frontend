@@ -68,9 +68,9 @@ const GameNotesComponent = ({ gameId }) => {
         {notes ?
             <>
                 <p className="gameNotes">{notes}</p>
-                <Button onClick={handleShow}>Edit Notes</Button>
+                <Button onClick={handleShow} className="rounded rounded-pill">Edit Notes</Button>
             </> :
-            <Button onClick={handleShow}>Add Notes</Button>
+            <Button onClick={handleShow} className="rounded rounded-pill">Add Notes</Button>
         }
         <Modal className="notesModal" show={show} onHide={handleClose}>
             <Modal.Header closeButton>

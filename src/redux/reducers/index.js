@@ -2,6 +2,7 @@ const initialState = {
   token: "",
   user: {},
   search: "",
+  reviews: []
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const mainReducer = (state = initialState, action) => {
       return {
         ...state,
         search: action.payload,
+      }
+    case "REVIEWS":
+      return {
+        ...state,
+        reviews: action.payload
       }
     default:
       return state;
