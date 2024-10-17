@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "./RatingComponent.scss"
 import { StarFill, Trash } from "react-bootstrap-icons"
 import { Alert, Button, FloatingLabel, Form } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
   const [hover, setHover] = useState(0)
@@ -16,6 +16,8 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
 
   const token = localStorage.getItem("token")
   const user = useSelector(store => store.user)
+
+  const dispatch = useDispatch()
 
   const rateGame = async (rat) => {
     try {
@@ -68,6 +70,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
       if (resp.ok) {
         setSuccess(true)
         setAlreadyRevied(true)
+        fetchAllReviews()
       } else throw new Error(data.message)
     } catch (error) {
       setError(true)
@@ -104,6 +107,24 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
     }
   }
 
+  const fetchAllReviews = async () => {
+    setError(false)
+    try {
+      const resp = await fetch("http://localhost:3001/reviews/" + gameId, {
+        headers: {
+          "Authorization": "Bearer " + token
+        },
+      })
+      const data = await resp.json()
+      if (resp.ok) {
+        dispatch({ type: "REVIEWS", payload: data })
+      } else throw new Error(data.message)
+    } catch (error) {
+      setError(true)
+      console.log(error.message)
+    }
+  }
+
   const deleteReview = async () => {
     try {
       const resp = await fetch("http://localhost:3001/reviews/" + gameId, {
@@ -115,6 +136,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
       setContent("")
       setDeleted(true)
       setSuccess(false)
+      fetchAllReviews()
     } catch (error) {
       console.log(error.message)
     }
@@ -172,6 +194,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
             style={{ height: '100px' }}
             onChange={ev => setContent(ev.target.value)}
             value={content}
+            maxLength={300}
             required
           />
         </FloatingLabel>

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import SingleReviewComponent from "../singleReviewComponent/SingleReviewComponent"
+import { useDispatch, useSelector } from "react-redux"
 
 const ReviewsComponent = ({ gameId }) => {
-  const [reviews, setReviews] = useState([])
+  const reviews = useSelector(store => store.reviews)
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setError] = useState(false)
 
   const token = localStorage.getItem("token")
+
+  const dispatch = useDispatch()
 
   const fetchReviews = async () => {
     setIsLoading(true)
@@ -20,7 +23,7 @@ const ReviewsComponent = ({ gameId }) => {
       const data = await resp.json()
       console.log(data)
       if (resp.ok) {
-        setReviews(data)
+        dispatch({ type: "REVIEWS", payload: data })
       } else throw new Error(data.message)
     } catch (error) {
       setError(true)

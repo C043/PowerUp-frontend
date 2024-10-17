@@ -17,7 +17,7 @@ const SingleReviewComponent = ({ content, rating, user }) => {
         <StarFill className="fs-4" color={rating > 3 ? "#1ad214" : "#fef9f6"} />
         <StarFill className="fs-4" color={rating > 4 ? "#1ad214" : "#fef9f6"} />
       </div>
-      <p className="mt-2 fs-5">{content}</p>
+      <p className="mt-2">{content}</p>
     </div>
   </div>
 }
