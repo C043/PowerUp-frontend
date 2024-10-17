@@ -7,6 +7,7 @@ import GameCover from "../../components/gameCover/GameCover"
 import Footer from "../../components/footer/Footer"
 import GameNotesComponent from "../gameNotes/GameNotesComponent"
 import RatingComponent from "../../components/ratingComponent/RatingComponent"
+import ReviewsComponent from "../../components/reviewsComponent/ReviewsComponent"
 
 const GamePage = () => {
 	const params = useParams()
@@ -138,7 +139,12 @@ const GamePage = () => {
 						className="d-flex flex-column flex-md-row align-items-center 
 						align-items-md-start gap-4 mt-5"
 					>
-						<img src={game.background_image} className="gameImage" />
+						<div className="d-flex flex-column">
+							<img src={game.background_image} className="gameImage" />
+							<div className="d-none d-md-block">
+								<ReviewsComponent gameId={params.gameId} />
+							</div>
+						</div>
 						<div className="d-flex flex-column align-items-start">
 							<h1>{game.name}</h1>
 							<div className="buttons d-flex gap-3">
@@ -217,6 +223,9 @@ const GamePage = () => {
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
 							<GameNotesComponent gameId={params.gameId} />
+							<div className="d-block d-md-none">
+								<ReviewsComponent gameId={params.gameId} />
+							</div>
 						</div>
 					</div>
 				</>

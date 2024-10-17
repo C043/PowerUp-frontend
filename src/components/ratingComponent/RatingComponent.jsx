@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react"
 import "./RatingComponent.scss"
-import { StarFill } from "react-bootstrap-icons"
+import { StarFill, Trash } from "react-bootstrap-icons"
 import { Alert, Button, FloatingLabel, Form } from "react-bootstrap"
+import { useSelector } from "react-redux"
 
 const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
   const [hover, setHover] = useState(0)
   const [rating, setRating] = useState(userRating)
-  const [content, setContent] = useState("")
+  const [content, setContent] = useState()
   const [hasError, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+  const [alresdyReviewed, setAlreadyRevied] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [deleted, setDeleted] = useState(false)
 
   const token = localStorage.getItem("token")
+  const user = useSelector(store => store.user)
 
   const rateGame = async (rat) => {
     try {
@@ -45,9 +50,10 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
 
   const postReview = async () => {
     setError(false)
+    const method = alresdyReviewed ? "PUT" : "POST"
     try {
       const resp = await fetch("http://localhost:3001/reviews", {
-        method: "POST",
+        method: method,
         headers: {
           "Authorization": "Bearer " + token,
           "Content-type": "application/json"
@@ -60,7 +66,8 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
       })
       const data = await resp.json()
       if (resp.ok) {
-        alert("Fatto")
+        setSuccess(true)
+        setAlreadyRevied(true)
       } else throw new Error(data.message)
     } catch (error) {
       setError(true)
@@ -80,8 +87,42 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
     }
   }
 
+  const fetchReview = async () => {
+    try {
+      const resp = await fetch("http://localhost:3001/reviews/me/" + gameId, {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+      const data = await resp.json()
+      if (resp.ok) {
+        setAlreadyRevied(true)
+        setContent(data.content)
+      } else throw new Error(data.message)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  const deleteReview = async () => {
+    try {
+      const resp = await fetch("http://localhost:3001/reviews/" + gameId, {
+        method: "DELETE",
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+      setContent("")
+      setDeleted(true)
+      setSuccess(false)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   useEffect(() => {
     setRating(userRating)
+    fetchReview()
   }, [])
 
   return <div className="mt-3 w-100">
@@ -122,15 +163,28 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
       <div>
         <p className="h5 mt-3">Leave a Review</p>
         {hasError && <Alert variant="danger">{errorMessage}</Alert>}
+        {success && <Alert>Review posted</Alert>}
+        {deleted && <Alert>Review deleted</Alert>}
         <FloatingLabel controlId="floatingTextarea2" label="Review">
           <Form.Control
             as="textarea"
             placeholder="Leave a review here"
             style={{ height: '100px' }}
+            onChange={ev => setContent(ev.target.value)}
+            value={content}
             required
           />
         </FloatingLabel>
-        <Button type="submit" className="mt-3">Submit</Button>
+        <div className="d-flex gap-2 align-items-center mt-3">
+          <Button type="submit" className="rounded rounded-pill" >
+            {alresdyReviewed ? "Edit Review" : "Submit"}
+          </Button>
+          {alresdyReviewed &&
+            <Button variant="danger" onClick={deleteReview} className="rounded rounded-pill">
+              <Trash />
+            </Button>
+          }
+        </div>
       </div>
     </Form>
   </div>
