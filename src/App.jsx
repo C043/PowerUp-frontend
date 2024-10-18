@@ -18,6 +18,7 @@ function App() {
         <Route path="/backlog" element={<ListPage listType={"backlog"} />} />
         <Route path="/playing" element={<ListPage listType={"playing"} />} />
         <Route path="/played" element={<ListPage listType={"played"} />} />
+        <Route path="/customList/:listId" element={<ListPage listType={"customList"} />} />
       </Routes>
     </BrowserRouter>
   );

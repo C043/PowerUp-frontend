@@ -7,6 +7,7 @@ import { CheckCircle, Controller, Pencil, Substack } from "react-bootstrap-icons
 import { useState } from "react"
 import AllGamesComponent from "../../components/allGamesComponent/AllGamesComponent"
 import Footer from "../../components/footer/Footer"
+import CustomListsComponent from "../../components/customListsComponent/CustomListsComponent"
 
 const ProfilePage = () => {
     const [show, setShow] = useState(false)
@@ -111,6 +112,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
             </div>
+            <CustomListsComponent />
             <AllGamesComponent />
             <Footer />
         </Container>
