@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import "./RatingComponent.scss"
 import { StarFill, Trash } from "react-bootstrap-icons"
 import { Alert, Button, FloatingLabel, Form } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
