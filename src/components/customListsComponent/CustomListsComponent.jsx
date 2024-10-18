@@ -11,7 +11,7 @@ const CustomListsComponent = () => {
   const fetchCustomLists = async () => {
     setIsLoaded(false)
     try {
-      const resp = await fetch("http://localhost:3001/customLists/me", {
+      const resp = await fetch("http://localhost:3001/customLists", {
         headers: {
           "Authorization": "Bearer " + token
         }
