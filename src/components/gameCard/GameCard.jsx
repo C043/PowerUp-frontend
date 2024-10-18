@@ -19,7 +19,7 @@ const GameCard = ({ image, title, gameId }) => {
         }}
         className="imageBg p-0"
       >
-        <div className="blur py-3 px-3 rounded-bottom w-100">
+        <div className="blur py-3 px-3 rounded-bottom ">
           <Card.Title className="truncate">{title}</Card.Title>
           <Card.Text>
             <div className="d-flex justify-content-end">
