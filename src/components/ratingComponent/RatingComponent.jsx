@@ -175,7 +175,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
           color={hover >= 4 || rating >= 4 ? "#1ad214" : "#fef9f6"}
           onClick={() => handleRating(4)}
         />
-        <StarFill className="star fs-3 primary"
+        <StarFill className="star fs-3"
           onMouseEnter={() => setHover(5)}
           onMouseLeave={() => setHover(0)}
           color={hover === 5 || rating === 5 ? "#1ad214" : "#fef9f6"}
