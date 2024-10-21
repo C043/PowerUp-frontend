@@ -19,20 +19,6 @@ const CustomListPage = () => {
     const token = localStorage.getItem("token")
     const navigate = useNavigate()
 
-    const removeFromList = async gameId => {
-        try {
-            const resp = await fetch(`http://localhost:3001/customLists/${params.listId}/${gameId}`, {
-                method: "DELETE",
-                headers: {
-                    "Authorization": "Bearer " + token
-                }
-            })
-        } catch (error) {
-            console.log(error)
-        } finally {
-            fetchGames()
-        }
-    }
 
     const fetchGames = async () => {
         try {
