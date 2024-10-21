@@ -1,12 +1,44 @@
 import { Button, Card } from "react-bootstrap";
 import "./GameCard.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Dash } from "react-bootstrap-icons";
+import { useState } from "react";
 
-const GameCard = ({ image, title, gameId }) => {
+const GameCard = ({ image, title, gameId, customGame }) => {
+  const [hide, setHide] = useState(false)
+
   const navigate = useNavigate()
+  const params = useParams()
+
+  const token = localStorage.getItem("token")
+
+  const removeFromList = async () => {
+    try {
+      const resp = await fetch(`http://localhost:3001/customLists/${params.listId}/${gameId}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setHide(true)
+    }
+  }
 
   return (
-    <Card border="dark" className="border-opacity-0">
+    <Card border="dark" className={hide ? "d-none" : "border-opacity-0"}>
+      {customGame && <>
+        <div
+          className="deleteGame position-absolute bg-danger rounded rounded-circle p-0"
+          role="button"
+          onClick={removeFromList}
+        >
+          <Dash />
+        </div>
+      </>
+      }
       <Card.Img variant="top" src={image} className="object-fit-cover" style={{
         height: "150px",
       }} />

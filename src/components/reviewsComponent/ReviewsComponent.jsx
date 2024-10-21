@@ -21,7 +21,6 @@ const ReviewsComponent = ({ gameId }) => {
         },
       })
       const data = await resp.json()
-      console.log(data)
       if (resp.ok) {
         dispatch({ type: "REVIEWS", payload: data })
       } else throw new Error(data.message)
