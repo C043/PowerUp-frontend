@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import Footer from "../../components/footer/Footer"
 import NavBar from "../../components/navBar/NavBar"
-import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap"
+import { Button, Col, Container, Form, Row } from "react-bootstrap"
 import LoadingGameCard from "../../components/gameCard/LoadingGameCard"
 import GameCard from "../../components/gameCard/GameCard"
 import { Check, Trash } from "react-bootstrap-icons"
@@ -18,6 +18,21 @@ const CustomListPage = () => {
 
     const token = localStorage.getItem("token")
     const navigate = useNavigate()
+
+    const removeFromList = async gameId => {
+        try {
+            const resp = await fetch(`http://localhost:3001/customLists/${params.listId}/${gameId}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        } finally {
+            fetchGames()
+        }
+    }
 
     const fetchGames = async () => {
         try {
@@ -165,7 +180,9 @@ const CustomListPage = () => {
                                 game.background_image :
                                 "https://ui-avatars.com/api/?background=random&name=" + game.name}
                             title={game.name}
+                            customGame={true}
                             gameId={game.id}
+                            remove={() => removeFromList(game.id)}
                         />
                     </Col>
                 ))}
