@@ -24,7 +24,7 @@ const CustomListPage = () => {
 
     const fetchGames = async () => {
         try {
-            const resp = await fetch(`${import.meta.env.VITE_URL}/customLists/games/${params.listId}`, {
+            const resp = await fetch(`${url}/customLists/games/${params.listId}`, {
                 headers: {
                     "Authorization": "Bearer " + token
                 },
@@ -41,7 +41,7 @@ const CustomListPage = () => {
 
     const fetchSingleGame = async (gameId) => {
         try {
-            const resp = await fetch(import.meta.env.VITE_URL + "/games/" + gameId, {
+            const resp = await fetch(url + "/games/" + gameId, {
                 headers: {
                     "Authorization": "Bearer " + token
                 },
@@ -62,7 +62,7 @@ const CustomListPage = () => {
 
     const editTitle = async () => {
         try {
-            const resp = await fetch(import.meta.env.VITE_URL + "/customLists/" + params.listId, {
+            const resp = await fetch(url + "/customLists/" + params.listId, {
                 method: "PUT",
                 headers: {
                     "Authorization": "Bearer " + token,
@@ -90,7 +90,7 @@ const CustomListPage = () => {
 
     const deleteList = async () => {
         try {
-            const resp = await fetch(import.meta.env.VITE_URL + "/customLists/" + params.listId, {
+            const resp = await fetch(url + "/customLists/" + params.listId, {
                 method: "DELETE",
                 headers: {
                     "Authorization": "Bearer " + token
