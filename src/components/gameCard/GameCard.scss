@@ -10,14 +10,6 @@
   }
 }
 
-.truncate {
-  text-overflow: ellipsis;
-
-  /* Needed to make it work */
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 .deleteGame {
   top: 5px;
   left: 5px;

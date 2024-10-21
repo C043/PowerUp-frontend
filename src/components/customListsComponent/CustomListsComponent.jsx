@@ -88,27 +88,30 @@ const CustomListsComponent = () => {
       <Modal.Header closeButton>
         <Modal.Title>Add Custom List</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={ev => handleSubmit(ev)}>
-          <Form.Label>Custom List Title</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Title"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            required
-          />
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
-        <Button
-          variant="primary"
-          onClick={ev => handleSubmit(ev)}
-        >
-          Submit
-        </Button>
-      </Modal.Footer>
+      <Form onSubmit={ev => handleSubmit(ev)}>
+        <Modal.Body>
+          <Form onSubmit={ev => handleSubmit(ev)}>
+            <Form.Label>Custom List Title</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              maxLength={"20"}
+              required
+            />
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          <Button
+            variant="primary"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   </div>
 }

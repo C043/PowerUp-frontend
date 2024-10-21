@@ -121,7 +121,7 @@ const AddToCustomListComponent = () => {
       <Modal.Body>
         {customLists.map(list => <div
           key={list.id}
-          className="customList rounded py-1 py-2 px-1 d-flex justify-content-between"
+          className="truncate customList rounded py-1 py-2 px-1 d-flex justify-content-between"
           role="button"
           onClick={isPresent.includes(list.id) ?
             ev => handleSubmit(ev, list.id, "remove") :

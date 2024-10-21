@@ -8,7 +8,7 @@ const SingleCustomList = ({ title, listId }) => {
     onClick={() => navigate(`/customList/${title}/${listId}`)}
     role="button"
   >
-    <p className="my-3">{title}</p>
+    <p className="truncate my-3">{title}</p>
   </div>
 }
 
