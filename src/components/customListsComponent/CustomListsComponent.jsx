@@ -1,12 +1,45 @@
 import { useEffect, useState } from "react"
-import { Button, Col, Row } from "react-bootstrap"
+import { Button, Col, Form, Modal, Row } from "react-bootstrap"
 import SingleCustomList from "../singleCustomList/SingleCustomList"
 
 const CustomListsComponent = () => {
   const [customLists, setCustomLists] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
+  const [show, setShow] = useState(false)
+  const [title, setTitle] = useState("")
 
   const token = localStorage.getItem("token")
+
+  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false)
+
+  const handleSubmit = ev => {
+    ev.preventDefault()
+    postCustomList()
+  }
+
+  const postCustomList = async () => {
+    try {
+      const resp = await fetch("http://localhost:3001/customLists", {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+          title: title
+        })
+      })
+      const data = await resp.json()
+      if (resp.ok) {
+        handleClose()
+        setTitle("")
+        fetchCustomLists()
+      } else throw new Error(data.message)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const fetchCustomLists = async () => {
     setIsLoaded(false)
@@ -36,7 +69,6 @@ const CustomListsComponent = () => {
     {customLists.length === 0 && isLoaded &&
       <>
         <p>No Custom Lists here, add one!</p>
-        <Button className="rounded rounded-pill">Add Custom List</Button>
       </>
     }
     <Row className="w-100 mt-3 g-2">
@@ -46,6 +78,38 @@ const CustomListsComponent = () => {
         </Col>
       })}
     </Row>
+    <Button
+      className="rounded rounded-pill mt-3"
+      onClick={handleShow}
+    >
+      Add Custom List
+    </Button>
+    <Modal className="addCustomListModal" show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Add Custom List</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form onSubmit={ev => handleSubmit(ev)}>
+          <Form.Label>Custom List Title</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            required
+          />
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <Button
+          variant="primary"
+          onClick={ev => handleSubmit(ev)}
+        >
+          Submit
+        </Button>
+      </Modal.Footer>
+    </Modal>
   </div>
 }
 
