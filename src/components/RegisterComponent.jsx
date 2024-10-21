@@ -16,10 +16,11 @@ const RegisterComponent = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_URL
 
   const loginFetch = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/auth/login", {
+      const resp = await fetch(url + "/auth/login", {
         method: "POST",
         body: JSON.stringify({
           email: email,
@@ -45,7 +46,7 @@ const RegisterComponent = () => {
 
   const registerFetch = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/auth/register", {
+      const resp = await fetch(url + "/auth/register", {
         method: "POST",
         body: JSON.stringify({
           email: email,

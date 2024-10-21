@@ -20,10 +20,11 @@ const GamePage = () => {
 	const [rating, setRating] = useState(0)
 	const [list, setList] = useState("")
 
+	const url = import.meta.env.VITE_URL
 
 	const fetchGame = async () => {
 		try {
-			const resp = await fetch(`http://localhost:3001/games/${params.gameId}`, {
+			const resp = await fetch(`${url}/games/${params.gameId}`, {
 				headers: {
 					"Authorization": "Bearer " + token
 				}
@@ -42,7 +43,7 @@ const GamePage = () => {
 
 	const addToList = async (list) => {
 		try {
-			const resp = await fetch(`http://localhost:3001/lists/${list}`, {
+			const resp = await fetch(`${url}/lists/${list}`, {
 				method: "POST",
 				body: JSON.stringify({
 					gameId: game.id,
@@ -65,7 +66,7 @@ const GamePage = () => {
 
 	const removeFromList = async list => {
 		try {
-			const resp = await fetch(`http://localhost:3001/lists/${list}/${game.id}`, {
+			const resp = await fetch(`${url}/lists/${list}/${game.id}`, {
 				method: "DELETE",
 				headers: {
 					"Authorization": "Bearer " + token,
@@ -83,7 +84,7 @@ const GamePage = () => {
 
 	const fetchLists = async (list) => {
 		try {
-			const resp = await fetch(`http://localhost:3001/lists/${list}`, {
+			const resp = await fetch(`${url}/lists/${list}`, {
 				headers: {
 					"Authorization": "Bearer " + token
 				},

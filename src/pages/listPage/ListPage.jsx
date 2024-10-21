@@ -11,9 +11,11 @@ const ListPage = ({ listType }) => {
 
     const token = localStorage.getItem("token")
 
+    const url = import.meta.env.VITE_URL
+
     const fetchGames = async () => {
         try {
-            const resp = await fetch(`http://localhost:3001/lists/${listType}`, {
+            const resp = await fetch(`${url}/lists/${listType}`, {
                 headers: {
                     "Authorization": "Bearer " + token
                 },
@@ -30,7 +32,7 @@ const ListPage = ({ listType }) => {
 
     const fetchSingleGame = async (gameId) => {
         try {
-            const resp = await fetch("http://localhost:3001/games/" + gameId, {
+            const resp = await fetch(url + "/games/" + gameId, {
                 headers: {
                     "Authorization": "Bearer " + token
                 },

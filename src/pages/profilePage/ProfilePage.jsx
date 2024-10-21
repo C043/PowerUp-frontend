@@ -30,7 +30,7 @@ const ProfilePage = () => {
         body.append("avatar", file)
         try {
             setIsLoaded(false)
-            const resp = await fetch("http://localhost:3001/users/me/avatar", {
+            const resp = await fetch(import.meta.env.VITE_URL + "/users/me/avatar", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + token,
@@ -50,7 +50,7 @@ const ProfilePage = () => {
 
     const fetchUser = async () => {
         try {
-            const resp = await fetch("http://localhost:3001/users", {
+            const resp = await fetch(import.meta.env.VITE_URL + "/users", {
                 headers: {
                     Authorization: "Bearer " + token,
                 },
@@ -61,9 +61,9 @@ const ProfilePage = () => {
                     type: "USER",
                     payload: data
                 })
-            } else throw new Error(data.message);
+            } else throw new Error(data);
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
         }
     };
 

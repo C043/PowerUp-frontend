@@ -12,9 +12,11 @@ const GameCard = ({ image, title, gameId, customGame }) => {
 
   const token = localStorage.getItem("token")
 
+  const url = import.meta.env.VITE_URL
+
   const removeFromList = async () => {
     try {
-      const resp = await fetch(`http://localhost:3001/customLists/${params.listId}/${gameId}`, {
+      const resp = await fetch(`${url}/customLists/${params.listId}/${gameId}`, {
         method: "DELETE",
         headers: {
           "Authorization": "Bearer " + token

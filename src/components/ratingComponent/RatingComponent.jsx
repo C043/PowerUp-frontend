@@ -18,9 +18,11 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
 
   const dispatch = useDispatch()
 
+  const url = import.meta.env.VITE_URL
+
   const rateGame = async (rat) => {
     try {
-      const resp = await fetch("http://localhost:3001/lists/" + list + "/" + gameId, {
+      const resp = await fetch(url + "/lists/" + list + "/" + gameId, {
         method: "PUT",
         headers: {
           "Authorization": "Bearer " + token,
@@ -53,7 +55,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
     setError(false)
     const method = alresdyReviewed ? "PUT" : "POST"
     try {
-      const resp = await fetch("http://localhost:3001/reviews", {
+      const resp = await fetch(url + "/reviews", {
         method: method,
         headers: {
           "Authorization": "Bearer " + token,
@@ -91,7 +93,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
 
   const fetchReview = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/reviews/me/" + gameId, {
+      const resp = await fetch(url + "/reviews/me/" + gameId, {
         headers: {
           "Authorization": "Bearer " + token
         }
@@ -109,7 +111,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
   const fetchAllReviews = async () => {
     setError(false)
     try {
-      const resp = await fetch("http://localhost:3001/reviews/" + gameId, {
+      const resp = await fetch(url + "/reviews/" + gameId, {
         headers: {
           "Authorization": "Bearer " + token
         },
@@ -126,7 +128,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
 
   const deleteReview = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/reviews/" + gameId, {
+      const resp = await fetch(url + "/reviews/" + gameId, {
         method: "DELETE",
         headers: {
           "Authorization": "Bearer " + token

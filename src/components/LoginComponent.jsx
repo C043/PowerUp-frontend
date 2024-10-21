@@ -15,9 +15,11 @@ const LoginComponent = () => {
 
   const navigate = useNavigate();
 
+  const url = import.meta.env.VITE_URL
+
   const loginFetch = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/auth/login", {
+      const resp = await fetch(url + "/auth/login", {
         method: "POST",
         body: JSON.stringify({
           email: email,

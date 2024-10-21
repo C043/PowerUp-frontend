@@ -17,9 +17,11 @@ const NavBar = () => {
 
   const navigate = useNavigate()
 
+  const url = import.meta.env.VITE_URL
+
   const fetchUser = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/users", {
+      const resp = await fetch(url + "/users", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -38,7 +40,7 @@ const NavBar = () => {
 
   const checkToken = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/auth/me", {
+      const resp = await fetch(url + "/auth/me", {
         method: "POST",
         body: JSON.stringify({
           token: token

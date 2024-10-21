@@ -13,6 +13,8 @@ const CustomListsComponent = () => {
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
 
+  const url = import.meta.env.VITE_URL
+
   const handleSubmit = ev => {
     ev.preventDefault()
     postCustomList()
@@ -20,7 +22,7 @@ const CustomListsComponent = () => {
 
   const postCustomList = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/customLists", {
+      const resp = await fetch(url + "/customLists", {
         method: "POST",
         headers: {
           "Authorization": "Bearer " + token,
@@ -44,7 +46,7 @@ const CustomListsComponent = () => {
   const fetchCustomLists = async () => {
     setIsLoaded(false)
     try {
-      const resp = await fetch("http://localhost:3001/customLists", {
+      const resp = await fetch(url + "/customLists", {
         headers: {
           "Authorization": "Bearer " + token
         }

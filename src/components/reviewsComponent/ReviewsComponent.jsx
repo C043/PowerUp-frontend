@@ -11,11 +11,13 @@ const ReviewsComponent = ({ gameId }) => {
 
   const dispatch = useDispatch()
 
+  const url = import.meta.env.VITE_URL
+
   const fetchReviews = async () => {
     setIsLoading(true)
     setError(false)
     try {
-      const resp = await fetch("http://localhost:3001/reviews/" + gameId, {
+      const resp = await fetch(url + "/reviews/" + gameId, {
         headers: {
           "Authorization": "Bearer " + token
         },

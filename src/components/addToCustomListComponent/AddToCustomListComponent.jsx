@@ -17,6 +17,8 @@ const AddToCustomListComponent = () => {
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
 
+  const url = import.meta.env.VITE_URL
+
   const handleSubmit = (ev, listId, remove) => {
     ev.preventDefault()
     if (remove) {
@@ -29,7 +31,7 @@ const AddToCustomListComponent = () => {
 
   const removeFromList = async listId => {
     try {
-      const resp = await fetch(`http://localhost:3001/customLists/${listId}/${params.gameId}`, {
+      const resp = await fetch(`${url}/customLists/${listId}/${params.gameId}`, {
         method: "DELETE",
         headers: {
           "Authorization": "Bearer " + token
@@ -43,7 +45,7 @@ const AddToCustomListComponent = () => {
 
   const addToList = async listId => {
     try {
-      const resp = await fetch("http://localhost:3001/customLists/" + listId, {
+      const resp = await fetch(url + "/customLists/" + listId, {
         method: "POST",
         headers: {
           "Authorization": "Bearer " + token,
@@ -65,7 +67,7 @@ const AddToCustomListComponent = () => {
 
   const checkPresence = async listId => {
     try {
-      const resp = await fetch("http://localhost:3001/customLists/games/" + listId, {
+      const resp = await fetch(url + "/customLists/games/" + listId, {
         headers: {
           "Authorization": "Bearer " + token
         }
@@ -86,7 +88,7 @@ const AddToCustomListComponent = () => {
   const fetchCustomLists = async () => {
     setIsLoaded(false)
     try {
-      const resp = await fetch("http://localhost:3001/customLists", {
+      const resp = await fetch(url + "/customLists", {
         headers: {
           "Authorization": "Bearer " + token
         }

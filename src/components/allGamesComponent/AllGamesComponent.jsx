@@ -8,10 +8,11 @@ const AllGamesComponent = () => {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const token = localStorage.getItem("token")
+  const url = import.meta.env.VITE_URL
 
   const fetchGames = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/lists", {
+      const resp = await fetch(url + "/lists", {
         headers: {
           "Authorization": "Bearer " + token
         }
@@ -28,7 +29,7 @@ const AllGamesComponent = () => {
 
   const fetchSingleGame = async (gameId) => {
     try {
-      const resp = await fetch("http://localhost:3001/games/" + gameId, {
+      const resp = await fetch(url + "/games/" + gameId, {
         headers: {
           "Authorization": "Bearer " + token
         },

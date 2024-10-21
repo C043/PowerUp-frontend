@@ -16,9 +16,11 @@ const GameNotesComponent = ({ gameId }) => {
         setShow(true)
     }
 
+    const url = import.meta.env.VITE_URL
+
     const fetchNotes = async () => {
         try {
-            const resp = await fetch("http://localhost:3001/notes/" + gameId, {
+            const resp = await fetch(url + "/notes/" + gameId, {
                 headers: {
                     "Authorization": "Bearer " + token,
                 },
@@ -34,7 +36,7 @@ const GameNotesComponent = ({ gameId }) => {
 
     const writeNotes = async () => {
         try {
-            const resp = await fetch("http://localhost:3001/notes", {
+            const resp = await fetch(url + "/notes", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + token,
