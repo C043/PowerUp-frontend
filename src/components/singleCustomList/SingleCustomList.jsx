@@ -5,7 +5,7 @@ const SingleCustomList = ({ title, listId }) => {
 
   return <div
     className="d-flex flex-column justify-content-center bg-secondary rounded align-items-center"
-    onClick={() => navigate(`/customList/${listId}`)}
+    onClick={() => navigate(`/customList/${title}/${listId}`)}
     role="button"
   >
     <p className="my-3">{title}</p>

@@ -14,11 +14,9 @@ const CustomListPage = () => {
 
     const token = localStorage.getItem("token")
 
-    // Sistema e finisci questa feature
-
     const fetchGames = async () => {
         try {
-            const resp = await fetch(`http://localhost:3001/customLists/${gameId}`, {
+            const resp = await fetch(`http://localhost:3001/customLists/games/${params.listId}`, {
                 headers: {
                     "Authorization": "Bearer " + token
                 },
@@ -56,7 +54,7 @@ const CustomListPage = () => {
     return <>
         <NavBar />
         <Container>
-            <h1>{listType[0].toUpperCase().concat(listType.slice(1))}</h1>
+            <h1>{params.listTitle}</h1>
             {games.length === 0 && isLoaded === true &&
                 <>
                     <p className="h5">Sorry, no games here 😰</p>
