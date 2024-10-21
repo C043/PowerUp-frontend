@@ -6,7 +6,7 @@ import NavBar from "../../components/navBar/NavBar"
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap"
 import LoadingGameCard from "../../components/gameCard/LoadingGameCard"
 import GameCard from "../../components/gameCard/GameCard"
-import { Check } from "react-bootstrap-icons"
+import { Check, Trash } from "react-bootstrap-icons"
 
 const CustomListPage = () => {
     const params = useParams()
@@ -79,6 +79,26 @@ const CustomListPage = () => {
         }
     }
 
+    const handleDelete = ev => {
+        ev.preventDefault()
+        confirm("Are you sure you want to delete this list?")
+        deleteList()
+    }
+
+    const deleteList = async () => {
+        try {
+            const resp = await fetch("http://localhost:3001/customLists/" + params.listId, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            })
+            navigate("/user")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         fetchGames()
     }, [])
@@ -87,31 +107,42 @@ const CustomListPage = () => {
         <NavBar />
         <Container>
             {editMode ?
-                <Form className="w-50 mb-3" onSubmit={ev => handleSubmit(ev)}>
-                    <InputGroup className="editCustomListTitle ">
-                        <Form.Control
-                            value={title}
-                            onChange={ev => setTitle(ev.target.value)}
-                            aria-label="Title"
-                            aria-describedby="basic-addon1"
-                            required
-                        />
-                        <Button
-                            className="btn btn-primary"
-                            id="basic-addon1"
-                            type="submit"
-                        >
-                            <Check />
-                        </Button>
-                    </InputGroup>
+                <Form className="w-50 my-3 d-flex" onSubmit={ev => handleSubmit(ev)}>
+                    <Form.Control
+                        value={title}
+                        onChange={ev => setTitle(ev.target.value)}
+                        aria-label="Title"
+                        aria-describedby="basic-addon1"
+                        required
+                    />
+                    <Button
+                        className="btn btn-primary"
+                        id="basic-addon1"
+                        type="submit"
+                    >
+                        <Check />
+                    </Button>
+                    <Button
+                        variant="danger"
+                        onClick={ev => handleDelete(ev)}
+                    >
+                        <Trash />
+                    </Button>
                 </Form> :
-                <p
-                    onClick={() => setEditMode(true)}
-                    role="button"
-                    className="h1 customListTitle d-inline-block"
-                >
-                    {title}
-                </p>
+                <div className="d-flex mt-3 align-items-center">
+                    <p
+                        className="h1 customListTitle d-inline-block me-auto"
+                    >
+                        {title}
+                    </p>
+                    <p
+                        role="button"
+                        onClick={() => setEditMode(true)}
+                        className="h6 text-primary"
+                    >
+                        <a className="link-underline-primary">Edit</a>
+                    </p>
+                </div>
             }
             {games.length === 0 && isLoaded === true &&
                 <>
