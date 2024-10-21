@@ -1,5 +1,5 @@
 import "./GamePage.scss"
-import { Container, Button, Form } from "react-bootstrap"
+import { Container, Button, Form, Modal } from "react-bootstrap"
 import NavBar from "../../components/navBar/NavBar"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -8,6 +8,7 @@ import Footer from "../../components/footer/Footer"
 import GameNotesComponent from "../gameNotes/GameNotesComponent"
 import RatingComponent from "../../components/ratingComponent/RatingComponent"
 import ReviewsComponent from "../../components/reviewsComponent/ReviewsComponent"
+import AddToCustomListComponent from "../../components/addToCustomListComponent/AddToCustomListComponent"
 
 const GamePage = () => {
 	const params = useParams()
@@ -18,6 +19,7 @@ const GamePage = () => {
 	const [played, setPlayed] = useState(false)
 	const [rating, setRating] = useState(0)
 	const [list, setList] = useState("")
+
 
 	const fetchGame = async () => {
 		try {
@@ -215,6 +217,7 @@ const GamePage = () => {
 									</Button>
 								</div>
 							</div>
+							<AddToCustomListComponent />
 							{list && <RatingComponent
 								list={list}
 								ratingSetter={(rat) => setRating(rat)}
