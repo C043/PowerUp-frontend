@@ -19,7 +19,7 @@ const CustomListPage = () => {
     const token = localStorage.getItem("token")
     const navigate = useNavigate()
 
-    const url = import.meta.VITE_URL
+    const url = import.meta.env.VITE_URL
 
 
     const fetchGames = async () => {

@@ -17,7 +17,7 @@ const HomePage = () => {
   const token = localStorage.getItem("token")
 
 
-  let url = import.meta.env.VITE_URL
+  let url = import.meta.env.VITE_URL + "/games?"
   if (platform) url = url + "&platforms=" + platform
   if (search) url = url + "&search=" + search
 
