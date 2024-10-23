@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import GameCard from "../../components/gameCard/GameCard";
 import NavBar from "../../components/navBar/NavBar";
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 import SideBar from "../../components/sideBar/SideBar";
 import Footer from "../../components/footer/Footer";
 import LoadingGameCard from "../../components/gameCard/LoadingGameCard";
@@ -11,6 +11,7 @@ const HomePage = () => {
   const [games, setGames] = useState([]);
   const [platform, setPlatform] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
   const search = useSelector(state => state.search)
 
@@ -22,6 +23,7 @@ const HomePage = () => {
   if (search) url = url + "&search=" + search
 
   const fetchGames = async () => {
+    setHasError(false)
     try {
       const resp = await fetch(url, {
         headers: {
@@ -31,10 +33,12 @@ const HomePage = () => {
       if (resp.ok) {
         const data = await resp.json();
         setGames(data.results)
-        setIsLoaded(true)
       } else throw new Error("Fetch error");
     } catch (error) {
+      setHasError(true)
       console.log(error);
+    } finally {
+      setIsLoaded(true)
     }
   };
 
@@ -69,6 +73,7 @@ const HomePage = () => {
             />
           </div>
           <Row className="w-100 mt-3 g-2">
+            {hasError && isLoaded && <Alert variant="danger">Fetch Error</Alert>}
             {games.length === 0 && isLoaded === false &&
               [...Array(20).keys()].map(index =>
                 <Col xs="12" md="6" lg="3" key={index}>
