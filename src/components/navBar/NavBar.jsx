@@ -78,8 +78,10 @@ const NavBar = () => {
             type: "SEARCH", payload: ""
           })
         }
-        }>
-          Game <span className="text-primary">Vault</span>
+        }
+          className="brand"
+        >
+          Power <span className="text-primary">Up</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav align-content-between">
