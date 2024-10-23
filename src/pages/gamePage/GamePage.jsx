@@ -1,5 +1,5 @@
 import "./GamePage.scss"
-import { Container, Button, Form, Modal } from "react-bootstrap"
+import { Container, Button, Form, Modal, Alert } from "react-bootstrap"
 import NavBar from "../../components/navBar/NavBar"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -19,10 +19,14 @@ const GamePage = () => {
 	const [played, setPlayed] = useState(false)
 	const [rating, setRating] = useState(0)
 	const [list, setList] = useState("")
+	const [hasError, setHasError] = useState(false)
+	const [isLoaded, setIsLoaded] = useState(false)
 
 	const url = import.meta.env.VITE_URL
 
 	const fetchGame = async () => {
+		setHasError(false)
+		setIsLoaded(false)
 		try {
 			const resp = await fetch(`${url}/games/${params.gameId}`, {
 				headers: {
@@ -37,7 +41,10 @@ const GamePage = () => {
 				fetchLists("played")
 			} else throw new Error("Fetch Error")
 		} catch (error) {
+			setHasError(true)
 			console.log(error.message)
+		} finally {
+			setIsLoaded(true)
 		}
 	}
 
@@ -135,6 +142,7 @@ const GamePage = () => {
 	return <>
 		<NavBar />
 		<Container>
+			{hasError && isLoaded && <Alert variant="danger">Fetch Error</Alert>}
 			{game &&
 				<>
 					<GameCover cover={game.background_image_additional} />
