@@ -42,11 +42,14 @@ const ReviewsComponent = ({ gameId }) => {
     <p className="h2">Reviews</p>
     {reviews.length === 0 && <p>No reviews yet, add one!</p>}
     <div className="d-flex flex-column">
-      {reviews.map(rev => <SingleReviewComponent key={rev.id} content={rev.content}
-        rating={rev.rating}
-        user={rev.user}
-      />
-      )}
+      {reviews.slice(-5)
+        .map(rev => <SingleReviewComponent
+          key={rev.id}
+          content={rev.content}
+          rating={rev.rating}
+          user={rev.user}
+        />
+        )}
     </div>
   </div>
 }
