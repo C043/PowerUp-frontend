@@ -13,6 +13,7 @@ $theme-colors: (
 
 $blue: #1ad214;
 $primary: #1ad214;
+
 // Import di bootstrap
 @import "bootstrap/scss/bootstrap";
 
@@ -62,4 +63,9 @@ body {
   /* Needed to make it work */
   overflow: hidden;
   white-space: nowrap;
+}
+
+.form-check-input:checked {
+  background-color: #000000;
+  border-color: #ffffff;
 }
