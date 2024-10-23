@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import Footer from "../../components/footer/Footer"
 import NavBar from "../../components/navBar/NavBar"
-import { Button, Col, Container, Form, Row } from "react-bootstrap"
+import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap"
 import LoadingGameCard from "../../components/gameCard/LoadingGameCard"
 import GameCard from "../../components/gameCard/GameCard"
 import { Check, Trash } from "react-bootstrap-icons"
@@ -15,6 +15,7 @@ const CustomListPage = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [title, setTitle] = useState(params.listTitle)
+    const [hasError, setHasError] = useState(false)
 
     const token = localStorage.getItem("token")
     const navigate = useNavigate()
@@ -23,6 +24,7 @@ const CustomListPage = () => {
 
 
     const fetchGames = async () => {
+        setHasError(false)
         try {
             const resp = await fetch(`${url}/customLists/games/${params.listId}`, {
                 headers: {
@@ -35,7 +37,10 @@ const CustomListPage = () => {
                 else setIsLoaded(true)
             } else throw new Error(data.message)
         } catch (error) {
+            setHasError(true)
             console.log(error.message)
+        } finally {
+            setIsLoaded(true)
         }
     }
 
@@ -147,6 +152,7 @@ const CustomListPage = () => {
                     </p>
                 </div>
             }
+            {hasError && isLoaded && <Alert variant="danger">Fetch Error</Alert>}
             {games.length === 0 && isLoaded === true &&
                 <>
                     <p className="h5">Sorry, no games here 😰</p>
