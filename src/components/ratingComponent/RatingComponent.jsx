@@ -195,7 +195,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
             style={{ height: '100px' }}
             onChange={ev => setContent(ev.target.value)}
             value={content}
-            maxLength={300}
+            maxLength={200}
             required
           />
         </FloatingLabel>
