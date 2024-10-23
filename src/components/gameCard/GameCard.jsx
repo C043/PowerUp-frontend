@@ -3,6 +3,7 @@ import "./GameCard.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { Dash } from "react-bootstrap-icons";
 import { useState } from "react";
+import GameCardHoverComponent from "../gameCardHoverComponent/GameCardHoverComponent";
 
 const GameCard = ({ image, title, gameId, customGame }) => {
   const [hide, setHide] = useState(false)
@@ -41,6 +42,7 @@ const GameCard = ({ image, title, gameId, customGame }) => {
         </div>
       </>
       }
+      <GameCardHoverComponent gameId={gameId} />
       <Card.Img variant="top" src={image} className="object-fit-cover" style={{
         height: "150px",
       }} />

@@ -1,0 +1,12 @@
+.addToLists {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background-color: black;
+  padding: 0.5em;
+}
+
+.card:hover .addToLists {
+  display: flex;
+}
