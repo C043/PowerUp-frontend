@@ -3,15 +3,15 @@ import { Search } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
+  const [search, setSearch] = useState("")
   const token = localStorage.getItem("token")
 
   const user = useSelector(state => state.user)
-  const search = useSelector(state => state.search)
 
   const dispatch = useDispatch()
 
@@ -62,6 +62,7 @@ const NavBar = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
+    dispatch({ type: "SEARCH", payload: search })
     navigate("/home")
   }
 
@@ -74,6 +75,8 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand role="button" onClick={() => {
           navigate("/home")
+          setSearch("")
+          dispatch({ type: "PAGE", payload: 1 })
           dispatch({
             type: "SEARCH", payload: ""
           })
@@ -91,12 +94,7 @@ const NavBar = () => {
                 <Search />
               </InputGroup.Text>
               <Form.Control value={search}
-                onChange={ev => {
-                  dispatch({
-                    type: "SEARCH", payload: ev.target.value
-                  })
-                }
-                }
+                onChange={ev => setSearch(ev.target.value)}
                 placeholder="Search 874.413 games"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
