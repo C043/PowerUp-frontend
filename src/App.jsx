@@ -7,6 +7,7 @@ import GamePage from "./pages/gamePage/GamePage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import ListPage from "./pages/listPage/ListPage";
 import CustomListPage from "./pages/customListPage/CustomListPage";
+import ErrorPage from "./pages/errorPage/ErrorPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/playing" element={<ListPage listType={"playing"} />} />
         <Route path="/played" element={<ListPage listType={"played"} />} />
         <Route path="/customList/:listTitle/:listId" element={<CustomListPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
