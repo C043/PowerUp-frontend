@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoding] = useState(false)
 
   const [hasError, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,6 +17,7 @@ const LoginComponent = () => {
   const url = import.meta.env.VITE_URL
 
   const loginFetch = async () => {
+    setIsLoding(true)
     try {
       const resp = await fetch(url + "/auth/login", {
         method: "POST",
@@ -38,6 +40,8 @@ const LoginComponent = () => {
       setError(true);
       setErrorMessage(error.message);
       console.log(error);
+    } finally {
+      setIsLoding(false)
     }
   };
 
@@ -46,35 +50,39 @@ const LoginComponent = () => {
     loginFetch()
   };
   return (
-    <Form onSubmit={e => handleSubmit(e)}>
-      {hasError ? <Alert variant="danger">{errorMessage}</Alert> : ""}
-      {success ? <Alert variant="primary">Login done</Alert> : ""}
-      <Form.Group className="mb-3" controlId="email">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-      </Form.Group>
+    isLoading ?
+      <div className="d-flex justify-content-center">
+        <Spinner variant="primary" />
+      </div> :
+      <Form onSubmit={e => handleSubmit(e)}>
+        {hasError ? <Alert variant="danger">{errorMessage}</Alert> : ""}
+        {success ? <Alert variant="primary">Login done</Alert> : ""}
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          minLength={8}
-          required
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            minLength={8}
+            required
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
   );
 };
 
