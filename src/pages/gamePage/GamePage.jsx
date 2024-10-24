@@ -160,7 +160,12 @@ const GamePage = () => {
 							<h1>{game.name}</h1>
 							<div className="buttons d-flex gap-3">
 								<div role="button" onClick={() => {
-									if (!backlog) addToList("backlog")
+									if (!backlog) {
+										addToList("backlog")
+										setBacklog(true)
+										setPlaying(false)
+										setPlayed(false)
+									}
 									else {
 										removeFromList("backlog")
 										setList("")
@@ -181,11 +186,16 @@ const GamePage = () => {
 									</Button>
 								</div>
 								<div role="button" onClick={() => {
-									if (!playing) addToList("playing")
+									if (!playing) {
+										setPlaying(true)
+										addToList("playing")
+										setBacklog(false)
+										setPlayed(false)
+									}
 									else {
+										setPlaying(false)
 										removeFromList("playing")
 										setList("")
-										setPlaying(false)
 									}
 								}
 								}>
@@ -203,7 +213,12 @@ const GamePage = () => {
 									</Button>
 								</div>
 								<div role="button" onClick={() => {
-									if (!played) addToList("played")
+									if (!played) {
+										setPlayed(true)
+										addToList("played")
+										setBacklog(false)
+										setPlaying(false)
+									}
 									else {
 										removeFromList("played")
 										setList("")
