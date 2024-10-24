@@ -11,8 +11,6 @@ const LoginComponent = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const url = import.meta.env.VITE_URL
@@ -69,6 +67,7 @@ const LoginComponent = () => {
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          minLength={8}
           required
         />
       </Form.Group>
