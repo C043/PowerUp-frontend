@@ -102,10 +102,13 @@ const GameCardHoverComponent = ({ gameId }) => {
       color={backlog ? "#a997df" : "white"}
       onClick={() => {
         if (backlog) {
-          removeFromList("backlog")
           setBacklog(false)
+          removeFromList("backlog")
         }
-        else addToList("backlog")
+        else {
+          setBacklog(true)
+          addToList("backlog")
+        }
       }}
     />
     <Controller
@@ -113,10 +116,13 @@ const GameCardHoverComponent = ({ gameId }) => {
       color={playing ? "red" : "white"}
       onClick={() => {
         if (playing) {
-          removeFromList("playing")
           setPlaying(false)
+          removeFromList("playing")
         }
-        else addToList("playing")
+        else {
+          setPlaying(true)
+          addToList("playing")
+        }
       }}
     />
     <CheckCircle
@@ -124,10 +130,13 @@ const GameCardHoverComponent = ({ gameId }) => {
       color={played ? "#1ad214" : "white"}
       onClick={() => {
         if (played) {
-          removeFromList("played")
           setPlayed(false)
+          removeFromList("played")
         }
-        else addToList("played")
+        else {
+          setPlayed(true)
+          addToList("played")
+        }
       }}
     />
   </div>
