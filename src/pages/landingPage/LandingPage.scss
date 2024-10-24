@@ -1,0 +1,27 @@
+.hero {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 100vh;
+
+  .header {
+    font-size: 10em;
+
+    @media (max-width: 426px) {
+      font-size: 5em;
+    }
+  }
+}
+
+.VideoBg-module_video__2IPmN {
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.5;
+  filter: blur(10px);
+  background-color: black;
+}
+
+.backButton {
+  height: 45px;
+  width: 45px;
+}

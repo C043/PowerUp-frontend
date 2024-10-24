@@ -1,0 +1,23 @@
+.blur {
+  backdrop-filter: brightness(0.8) blur(100px);
+}
+
+.card {
+  transition: all 200ms;
+
+  &:hover {
+    scale: 1.04;
+  }
+}
+
+.deleteGame {
+  top: 5px;
+  left: 5px;
+  height: 1em;
+  width: 1em;
+  display: none;
+}
+
+.card:hover .deleteGame {
+  display: flex;
+}
