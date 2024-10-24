@@ -1,14 +1,17 @@
+import "./SingleCustomList.scss"
 import { useNavigate } from "react-router-dom"
 
 const SingleCustomList = ({ title, listId }) => {
   const navigate = useNavigate()
 
   return <div
-    className="d-flex flex-column justify-content-center bg-secondary rounded align-items-center"
+    className="singleCustomList d-flex flex-column align-items-center rounded"
     onClick={() => navigate(`/customList/${title}/${listId}`)}
     role="button"
   >
-    <p className="truncate my-3">{title}</p>
+    <div className="blur w-100 h-100 d-flex justify-content-center rounded">
+      <p className="truncate my-3 h3">{title}</p>
+    </div>
   </div>
 }
 
