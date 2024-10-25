@@ -99,14 +99,14 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
           <Card.Title className="truncate">{title}</Card.Title>
           <div className="d-flex gap-1 align-items-center">
             {pc &&
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <svg className="platformIcon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 13.772l6.545.902V8.426H0zM0 7.62h6.545V1.296L0
             2.198zm7.265 7.15l8.704 1.2V8.425H7.265zm0-13.57v6.42h8.704V0z" >
                 </path>
               </svg>
             }
             {xbox &&
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+              <svg className="platformIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                 <path d="M3.564 1.357l-.022.02c.046-.048.11-.1.154-.128C4.948.435
             6.396 0 8 0c1.502 0 2.908.415 4.11
             1.136.086.052.324.215.446.363C11.4.222 7.993 2.962 7.993
@@ -125,7 +125,7 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
               </svg>
             }
             {playstation &&
-              <svg viewBox="0 0 21 16" xmlns="http://www.w3.org/2000/svg">
+              <svg className="platformIcon" viewBox="0 0 21 16" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.112 16L8 14.654V0s6.764 1.147 7.695 3.987c.931 2.842-.52
             4.682-1.03 4.736-1.42.15-1.96-.748-1.96-.748V3.39l-1.544-.648L11.112
             16zM12 14.32V16s7.666-2.338
@@ -138,7 +138,7 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
               </svg>
             }
             {switchPlatform &&
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
+              <svg className="platformIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
                 <path fillRule="evenodd" d="M8 0h5a8 8 0 110 16H8A8 8 0 118 0zm-.135
             1.935a6.065 6.065 0 000 12.13h5.12a6.065 6.065 0
             000-12.13h-5.12zm-1.33 2.304h2.401l3.199

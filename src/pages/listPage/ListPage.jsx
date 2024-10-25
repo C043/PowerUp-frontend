@@ -76,6 +76,7 @@ const ListPage = ({ listType }) => {
                                 "https://ui-avatars.com/api/?background=random&name=" + game.name}
                             title={game.name}
                             gameId={game.id}
+                            platforms={game.parent_platforms}
                         />
                     </Col>
                 ))}

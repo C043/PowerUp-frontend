@@ -180,6 +180,7 @@ const CustomListPage = () => {
                             title={game.name}
                             customGame={true}
                             gameId={game.id}
+                            platforms={game.parent_platforms}
                         />
                     </Col>
                 ))}

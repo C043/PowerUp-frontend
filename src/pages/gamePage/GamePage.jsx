@@ -189,14 +189,14 @@ const GamePage = () => {
 							<div className="d-none d-md-block">
 								<div className="d-flex gap-1 align-items-center mb-3">
 									{pc &&
-										<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+										<svg className="platformIcon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 											<path d="M0 13.772l6.545.902V8.426H0zM0 7.62h6.545V1.296L0
             2.198zm7.265 7.15l8.704 1.2V8.425H7.265zm0-13.57v6.42h8.704V0z" >
 											</path>
 										</svg>
 									}
 									{xbox &&
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+										<svg className="platformIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 											<path d="M3.564 1.357l-.022.02c.046-.048.11-.1.154-.128C4.948.435
             6.396 0 8 0c1.502 0 2.908.415 4.11
             1.136.086.052.324.215.446.363C11.4.222 7.993 2.962 7.993
@@ -215,7 +215,7 @@ const GamePage = () => {
 										</svg>
 									}
 									{playstation &&
-										<svg viewBox="0 0 21 16" xmlns="http://www.w3.org/2000/svg">
+										<svg className="platformIcon" viewBox="0 0 21 16" xmlns="http://www.w3.org/2000/svg">
 											<path d="M11.112 16L8 14.654V0s6.764 1.147 7.695 3.987c.931 2.842-.52
             4.682-1.03 4.736-1.42.15-1.96-.748-1.96-.748V3.39l-1.544-.648L11.112
             16zM12 14.32V16s7.666-2.338
@@ -228,7 +228,7 @@ const GamePage = () => {
 										</svg>
 									}
 									{switchPlatform &&
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
+										<svg className="platformIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
 											<path fillRule="evenodd" d="M8 0h5a8 8 0 110 16H8A8 8 0 118 0zm-.135
             1.935a6.065 6.065 0 000 12.13h5.12a6.065 6.065 0
             000-12.13h-5.12zm-1.33 2.304h2.401l3.199
@@ -237,7 +237,7 @@ const GamePage = () => {
 										</svg>
 									}
 									{ios &&
-										<svg className="mobileIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 18">
+										<svg className="platformIcon" className="mobileIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 18">
 											<path d="M9.538 0H1.651C.896 0 .287.587.287 1.31v15.368c0 .723.61 1.31
             1.364 1.31h7.887c.754 0 1.364-.587
             1.364-1.31V1.31c0-.723-.61-1.31-1.364-1.31zm-5.89.796h3.894c.098 0
@@ -369,18 +369,19 @@ const GamePage = () => {
 							/>}
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
-							<p className="h3 mt-3">Platforms</p>
+							<GameNotesComponent gameId={params.gameId} />
 							<div className="d-block d-md-none">
+								<p className="h3 mt-3">Platforms</p>
 								<div className="d-flex gap-1 align-items-center mb-3">
 									{pc &&
-										<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+										<svg className="platformIcon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 											<path d="M0 13.772l6.545.902V8.426H0zM0 7.62h6.545V1.296L0
             2.198zm7.265 7.15l8.704 1.2V8.425H7.265zm0-13.57v6.42h8.704V0z" >
 											</path>
 										</svg>
 									}
 									{xbox &&
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+										<svg className="platforIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 											<path d="M3.564 1.357l-.022.02c.046-.048.11-.1.154-.128C4.948.435
             6.396 0 8 0c1.502 0 2.908.415 4.11
             1.136.086.052.324.215.446.363C11.4.222 7.993 2.962 7.993
@@ -399,7 +400,7 @@ const GamePage = () => {
 										</svg>
 									}
 									{playstation &&
-										<svg viewBox="0 0 21 16" xmlns="http://www.w3.org/2000/svg">
+										<svg className="platformIcon" viewBox="0 0 21 16" xmlns="http://www.w3.org/2000/svg">
 											<path d="M11.112 16L8 14.654V0s6.764 1.147 7.695 3.987c.931 2.842-.52
             4.682-1.03 4.736-1.42.15-1.96-.748-1.96-.748V3.39l-1.544-.648L11.112
             16zM12 14.32V16s7.666-2.338
@@ -412,7 +413,7 @@ const GamePage = () => {
 										</svg>
 									}
 									{switchPlatform &&
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
+										<svg className="platformIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
 											<path fillRule="evenodd" d="M8 0h5a8 8 0 110 16H8A8 8 0 118 0zm-.135
             1.935a6.065 6.065 0 000 12.13h5.12a6.065 6.065 0
             000-12.13h-5.12zm-1.33 2.304h2.401l3.199
@@ -457,7 +458,6 @@ const GamePage = () => {
 										</svg>
 									}
 								</div>
-								<GameNotesComponent gameId={params.gameId} />
 								<ReviewsComponent gameId={params.gameId} />
 							</div>
 						</div>
