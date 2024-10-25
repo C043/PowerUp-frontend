@@ -63,6 +63,7 @@ const NavBar = () => {
   const handleSubmit = (ev) => {
     ev.preventDefault()
     dispatch({ type: "SEARCH", payload: search })
+    dispatch({ type: "PAGE", payload: 1 })
     navigate("/home")
   }
 

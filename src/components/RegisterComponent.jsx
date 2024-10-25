@@ -92,68 +92,71 @@ const RegisterComponent = () => {
       :
       <Form onSubmit={e => handleSubmit(e)}>
         {hasError ? <Alert variant="danger">{errorMessage}</Alert> : ""}
-        {success ? <Alert variant="primary">Registration done</Alert> : ""}
-        <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <div className="d-flex">
-          <Form.Group className="mb-3" controlId="firstName">
-            <div className="d-flex flex-column me-3">
-              <Form.Label>Name</Form.Label>
+        {success ? <Alert variant="primary">Registration done, redirecting...</Alert> :
+          <>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email address</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="First Name"
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 required
               />
+            </Form.Group>
+            <div className="d-flex">
+              <Form.Group className="mb-3" controlId="firstName">
+                <div className="d-flex flex-column me-3">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                    required
+                  />
+                </div>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="lastName">
+                <div className="d-flex flex-column">
+                  <Form.Label>Surname</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                    required
+                  />
+                </div>
+              </Form.Group>
             </div>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="lastName">
-            <div className="d-flex flex-column">
-              <Form.Label>Surname</Form.Label>
+            <Form.Group className="mb-3" controlId="username">
+              <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
+                placeholder="Username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
                 required
               />
-            </div>
-          </Form.Group>
-        </div>
-        <Form.Group className="mb-3" controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            required
-          />
-        </Form.Group>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            minLength={8}
-            required
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                minLength={8}
+                required
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </>
+        }
       </Form>
   );
 };
