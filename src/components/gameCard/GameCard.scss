@@ -21,3 +21,16 @@
 .card:hover .deleteGame {
   display: flex;
 }
+
+svg {
+  width: 15px;
+  flex: none;
+
+  path {
+    fill: #FEF9F6;
+  }
+}
+
+.mobileIcon {
+  height: 15px;
+}
