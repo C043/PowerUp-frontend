@@ -33,7 +33,11 @@ const CustomListPage = () => {
             })
             const data = await resp.json()
             if (resp.ok) {
-                if (data.length > 0) data.forEach(game => fetchSingleGame(game.gameId))
+                if (data.length > 0) {
+                    for (let i = 0; i < data.length; i++) {
+                        await fetchSingleGame(data[i].gameId)
+                    }
+                }
                 else setIsLoaded(true)
             } else throw new Error(data.message)
         } catch (error) {

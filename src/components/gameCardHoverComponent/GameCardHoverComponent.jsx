@@ -107,6 +107,8 @@ const GameCardHoverComponent = ({ gameId }) => {
         }
         else {
           setBacklog(true)
+          setPlaying(false)
+          setPlayed(false)
           addToList("backlog")
         }
       }}
@@ -121,6 +123,8 @@ const GameCardHoverComponent = ({ gameId }) => {
         }
         else {
           setPlaying(true)
+          setBacklog(false)
+          setPlayed(false)
           addToList("playing")
         }
       }}
@@ -135,6 +139,8 @@ const GameCardHoverComponent = ({ gameId }) => {
         }
         else {
           setPlayed(true)
+          setBacklog(false)
+          setPlaying(false)
           addToList("played")
         }
       }}
