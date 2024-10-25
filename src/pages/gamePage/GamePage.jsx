@@ -9,6 +9,7 @@ import GameNotesComponent from "../gameNotes/GameNotesComponent"
 import RatingComponent from "../../components/ratingComponent/RatingComponent"
 import ReviewsComponent from "../../components/reviewsComponent/ReviewsComponent"
 import AddToCustomListComponent from "../../components/addToCustomListComponent/AddToCustomListComponent"
+import ScreenshotsComponent from "../../components/screenshotsComponent/ScreenshotsComponent"
 
 const GamePage = () => {
 	const params = useParams()
@@ -43,6 +44,7 @@ const GamePage = () => {
 			if (resp.ok) {
 				const data = await resp.json()
 				setGame(data)
+				console.log(data)
 				data.parent_platforms.forEach(platform => {
 					const id = platform.platform.id
 					switch (id) {
@@ -367,6 +369,8 @@ const GamePage = () => {
 								ratingSetter={(rat) => setRating(rat)}
 								userRating={rating} gameId={params.gameId}
 							/>}
+							<p className="mt-3 h2">Screenshots</p>
+							<ScreenshotsComponent screenshots={game.short_screenshots} />
 							<h2 className="mt-3">Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: game.description }} />
 							<GameNotesComponent gameId={params.gameId} />
