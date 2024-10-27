@@ -243,7 +243,7 @@ const GamePage = () => {
 										</svg>
 									}
 									{ios &&
-										<svg className="platformIcon" className="mobileIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 18">
+										<svg className="mobileIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 18">
 											<path d="M9.538 0H1.651C.896 0 .287.587.287 1.31v15.368c0 .723.61 1.31
             1.364 1.31h7.887c.754 0 1.364-.587
             1.364-1.31V1.31c0-.723-.61-1.31-1.364-1.31zm-5.89.796h3.894c.098 0
@@ -326,7 +326,7 @@ const GamePage = () => {
 								}
 								}>
 									<Button
-										className="rounded rounded-pill" variant="danger"
+										className="rounded rounded-pill" variant="info"
 									>
 										<div className="d-flex gap-1">
 											<Form.Check

@@ -115,7 +115,7 @@ const GameCardHoverComponent = ({ gameId }) => {
     />
     <Controller
       role="button"
-      color={playing ? "red" : "white"}
+      color={playing ? "#16DFE9" : "white"}
       onClick={() => {
         if (playing) {
           setPlaying(false)

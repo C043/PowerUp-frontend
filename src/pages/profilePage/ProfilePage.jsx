@@ -98,7 +98,7 @@ const ProfilePage = () => {
                             <Substack className="mb-1 me-1" />Backlog
                         </Button>
                         <Button
-                            className="rounded rounded-pill" variant="danger"
+                            className="rounded rounded-pill" variant="info"
                             onClick={() => navigate("/playing")}
                         >
                             <Controller className="mb-1 me-1" />Playing
