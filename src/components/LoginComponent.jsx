@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import ButtonComponent from "./ButtonComponent";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -79,9 +80,7 @@ const LoginComponent = () => {
           />
         </Form.Group>
         <div className="d-flex justify-content-center">
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <ButtonComponent text={"login"} />
         </div>
       </Form>
   );

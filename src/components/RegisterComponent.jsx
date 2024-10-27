@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ButtonComponent from "./ButtonComponent";
 
 const RegisterComponent = () => {
   const [email, setEmail] = useState("");
@@ -153,9 +154,7 @@ const RegisterComponent = () => {
               />
             </Form.Group>
             <div className="d-flex justify-content-center">
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
+              <ButtonComponent text={"Register"} />
             </div>
           </>
         }
