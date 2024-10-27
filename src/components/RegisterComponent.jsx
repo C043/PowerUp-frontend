@@ -152,9 +152,11 @@ const RegisterComponent = () => {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+            <div className="d-flex justify-content-center">
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </div>
           </>
         }
       </Form>

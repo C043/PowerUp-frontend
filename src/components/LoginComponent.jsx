@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
@@ -79,9 +78,11 @@ const LoginComponent = () => {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <div className="d-flex justify-content-center">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </div>
       </Form>
   );
 };
