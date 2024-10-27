@@ -387,7 +387,7 @@ const GamePage = () => {
 										</svg>
 									}
 									{xbox &&
-										<svg className="platforIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+										<svg className="platformIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 											<path d="M3.564 1.357l-.022.02c.046-.048.11-.1.154-.128C4.948.435
             6.396 0 8 0c1.502 0 2.908.415 4.11
             1.136.086.052.324.215.446.363C11.4.222 7.993 2.962 7.993
