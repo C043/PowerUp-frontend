@@ -64,7 +64,7 @@ const StyledWrapper = styled.div`
     width: var(--size-button);
     transition: all ease 0.3s;
     background-color: #191A1E;
-    box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+    box-shadow: 1.5px 1.5px 3px #1ad214, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
     border-radius: 50px;
     cursor: pointer;
   }
@@ -73,7 +73,7 @@ const StyledWrapper = styled.div`
   .focused{
     width: 100%;
     cursor: text;
-    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
+    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #1ad214;
   }
 
   .input:focus + .icon,
