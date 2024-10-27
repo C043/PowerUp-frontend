@@ -1,14 +1,12 @@
-import { Form, InputGroup } from "react-bootstrap";
-import { Search } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import SearchComponent from "../SearchComponent";
 
 const NavBar = () => {
-  const [search, setSearch] = useState("")
   const token = localStorage.getItem("token")
 
   const user = useSelector(state => state.user)
@@ -60,12 +58,6 @@ const NavBar = () => {
     }
   }
 
-  const handleSubmit = (ev) => {
-    ev.preventDefault()
-    dispatch({ type: "SEARCH", payload: search })
-    dispatch({ type: "PAGE", payload: 1 })
-    navigate("/home")
-  }
 
   useEffect(() => {
     checkToken()
@@ -76,40 +68,24 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand role="button" onClick={() => {
           navigate("/home")
-          setSearch("")
           dispatch({ type: "PAGE", payload: 1 })
           dispatch({
             type: "SEARCH", payload: ""
           })
         }
         }
-          className="brand"
+          className="brand p-0"
         >
           Power <span className="text-primary">Up</span>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav align-content-between">
-          <Form className="w-100 me-3" onSubmit={ev => handleSubmit(ev)}>
-            <InputGroup>
-              <InputGroup.Text id="basic-addon1">
-                <Search />
-              </InputGroup.Text>
-              <Form.Control value={search}
-                onChange={ev => setSearch(ev.target.value)}
-                placeholder="Search 874.413 games"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-              />
-            </InputGroup>
-          </Form>
-          <img
-            role="button"
-            src={user.avatar}
-            alt="profile-picture"
-            className="border-0 rounded rounded-circle propic border border-color-primary"
-            onClick={() => navigate("/user")}
-          />
-        </Navbar.Collapse>
+        <SearchComponent />
+        <img
+          role="button"
+          src={user.avatar}
+          alt="profile-picture"
+          className="border-0 rounded rounded-circle propic border border-color-primary"
+          onClick={() => navigate("/user")}
+        />
       </Container>
     </Navbar>
   );
