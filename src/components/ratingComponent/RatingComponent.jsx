@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { StarFill, Trash } from "react-bootstrap-icons"
-import { Alert, Button, FloatingLabel, Form } from "react-bootstrap"
+import { Accordion, Alert, Button, FloatingLabel, Form } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 
 const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
@@ -183,33 +183,37 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
           onClick={() => handleRating(5)}
         />
       </div>
-      <div>
-        <p className="h5 mt-3">Leave a Review</p>
-        {hasError && <Alert variant="danger">{errorMessage}</Alert>}
-        {success && <Alert>Review posted</Alert>}
-        {deleted && <Alert>Review deleted</Alert>}
-        <FloatingLabel controlId="floatingTextarea2" label="Review">
-          <Form.Control
-            as="textarea"
-            placeholder="Leave a review here"
-            style={{ height: '100px' }}
-            onChange={ev => setContent(ev.target.value)}
-            value={content}
-            maxLength={200}
-            required
-          />
-        </FloatingLabel>
-        <div className="d-flex gap-2 align-items-center mt-3">
-          <Button type="submit" className="rounded rounded-pill" >
-            {alresdyReviewed ? "Edit Review" : "Submit"}
-          </Button>
-          {alresdyReviewed &&
-            <Button variant="danger" onClick={deleteReview} className="rounded rounded-pill">
-              <Trash />
-            </Button>
-          }
-        </div>
-      </div>
+      <Accordion className="mt-3" defaultActiveKey="0">
+        <Accordion.Item eventKey="0">
+          <Accordion.Header><p className="h5 p-0">Leave a Review</p></Accordion.Header>
+          <Accordion.Body>
+            {hasError && <Alert variant="danger">{errorMessage}</Alert>}
+            {success && <Alert>Review posted</Alert>}
+            {deleted && <Alert>Review deleted</Alert>}
+            <FloatingLabel controlId="floatingTextarea2" label="Review">
+              <Form.Control
+                as="textarea"
+                placeholder="Leave a review here"
+                style={{ height: '100px' }}
+                onChange={ev => setContent(ev.target.value)}
+                value={content}
+                maxLength={200}
+                required
+              />
+            </FloatingLabel>
+            <div className="d-flex gap-2 align-items-center mt-3">
+              <Button type="submit" className="rounded rounded-pill" >
+                {alresdyReviewed ? "Edit Review" : "Submit"}
+              </Button>
+              {alresdyReviewed &&
+                <Button variant="danger" onClick={deleteReview} className="rounded rounded-pill">
+                  <Trash />
+                </Button>
+              }
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </Form>
   </div>
 }

@@ -7,12 +7,14 @@ const GameCardHoverComponent = ({ gameId }) => {
   const [playing, setPlaying] = useState(false)
   const [played, setPlayed] = useState(false)
   const [list, setList] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const token = localStorage.getItem("token")
 
   const url = import.meta.env.VITE_URL
 
   const addToList = async (list) => {
+    setIsLoading(true)
     try {
       const resp = await fetch(`${url}/lists/${list}`, {
         method: "POST",
@@ -31,6 +33,8 @@ const GameCardHoverComponent = ({ gameId }) => {
       } else throw new Error(resp.message)
     } catch (error) {
       console.log(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -78,6 +82,7 @@ const GameCardHoverComponent = ({ gameId }) => {
   }
 
   const removeFromList = async list => {
+    setIsLoading(true)
     try {
       const resp = await fetch(`${url}/lists/${list}/${gameId}`, {
         method: "DELETE",
@@ -87,6 +92,8 @@ const GameCardHoverComponent = ({ gameId }) => {
       })
     } catch (error) {
       console.log(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -100,7 +107,7 @@ const GameCardHoverComponent = ({ gameId }) => {
     <Substack
       role="button"
       color={backlog ? "#a997df" : "white"}
-      onClick={() => {
+      onClick={isLoading ? "" : () => {
         if (backlog) {
           setBacklog(false)
           removeFromList("backlog")
@@ -115,8 +122,8 @@ const GameCardHoverComponent = ({ gameId }) => {
     />
     <Controller
       role="button"
-      color={playing ? "red" : "white"}
-      onClick={() => {
+      color={playing ? "#16DFE9" : "white"}
+      onClick={isLoading ? "" : () => {
         if (playing) {
           setPlaying(false)
           removeFromList("playing")
@@ -132,7 +139,7 @@ const GameCardHoverComponent = ({ gameId }) => {
     <CheckCircle
       role="button"
       color={played ? "#1ad214" : "white"}
-      onClick={() => {
+      onClick={isLoading ? "" : () => {
         if (played) {
           setPlayed(false)
           removeFromList("played")

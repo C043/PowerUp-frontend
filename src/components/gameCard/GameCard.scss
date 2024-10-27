@@ -21,3 +21,21 @@
 .card:hover .deleteGame {
   display: flex;
 }
+
+.platformIcon {
+  width: 15px;
+  flex: none;
+
+  path {
+    fill: #FEF9F6;
+  }
+}
+
+.mobileIcon {
+  width: 15px;
+  height: 15px;
+
+  path {
+    fill: #FEF9F6;
+  }
+}
