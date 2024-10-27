@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Alert, Button, Form, Spinner } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ButtonComponent from "./ButtonComponent";
+import LoadingComponent from "./LoadingComponent";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -52,7 +53,7 @@ const LoginComponent = () => {
   return (
     isLoading ?
       <div className="d-flex justify-content-center">
-        <Spinner variant="primary" />
+        <LoadingComponent />
       </div> :
       <Form onSubmit={e => handleSubmit(e)}>
         {hasError ? <Alert variant="danger">{errorMessage}</Alert> : ""}

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Alert, Button, Form, Spinner } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ButtonComponent from "./ButtonComponent";
+import LoadingComponent from "./LoadingComponent";
 
 const RegisterComponent = () => {
   const [email, setEmail] = useState("");
@@ -88,7 +89,7 @@ const RegisterComponent = () => {
   return (
     isLoading ?
       <div className="d-flex justify-content-center">
-        <Spinner variant="primary" />
+        <LoadingComponent />
       </div>
       :
       <Form onSubmit={e => handleSubmit(e)}>

@@ -9,6 +9,7 @@ import GameNotesComponent from "../gameNotes/GameNotesComponent"
 import RatingComponent from "../../components/ratingComponent/RatingComponent"
 import ReviewsComponent from "../../components/reviewsComponent/ReviewsComponent"
 import AddToCustomListComponent from "../../components/addToCustomListComponent/AddToCustomListComponent"
+import LoadingComponent from "../../components/LoadingComponent"
 
 const GamePage = () => {
 	const params = useParams()
@@ -175,6 +176,11 @@ const GamePage = () => {
 	return <>
 		<NavBar />
 		<Container>
+			{isLoaded === false && <div
+				className="d-flex flex-column justify-content-center align-items-center mt-5"
+			>
+				<LoadingComponent />
+			</div>}
 			{hasError && isLoaded && <Alert variant="danger">Fetch Error</Alert>}
 			{game &&
 				<>
