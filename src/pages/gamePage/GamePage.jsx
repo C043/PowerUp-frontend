@@ -191,8 +191,8 @@ const GamePage = () => {
 					>
 						<div className="d-flex flex-column">
 							<img src={game.background_image} className="gameImage" />
-							<p className="h3 mt-3">Platforms</p>
 							<div className="d-none d-md-block">
+								<p className="h3 mt-3">Platforms</p>
 								<div className="d-flex gap-1 align-items-center mb-3">
 									{pc &&
 										<svg className="platformIcon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
