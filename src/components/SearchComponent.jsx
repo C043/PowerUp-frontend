@@ -14,6 +14,7 @@ const SearchComponent = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
+    setFocused(false)
     dispatch({ type: "SEARCH", payload: search })
     dispatch({ type: "PAGE", payload: 1 })
     navigate("/home")

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SearchComponent from "../SearchComponent";
+import BrandComponent from "../BrandComponent";
 
 const NavBar = () => {
   const token = localStorage.getItem("token")
@@ -66,18 +67,7 @@ const NavBar = () => {
   return (
     <Navbar className="bg-body-dark pt-3">
       <Container>
-        <Navbar.Brand role="button" onClick={() => {
-          navigate("/home")
-          dispatch({ type: "PAGE", payload: 1 })
-          dispatch({
-            type: "SEARCH", payload: ""
-          })
-        }
-        }
-          className="brand p-0"
-        >
-          Power <span className="text-primary">Up</span>
-        </Navbar.Brand>
+        <BrandComponent />
         <SearchComponent />
         <img
           role="button"

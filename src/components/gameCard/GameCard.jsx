@@ -67,7 +67,7 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
   }
 
   useEffect(() => {
-    setPlatforms()
+    if (platforms) setPlatforms()
   }, [platforms])
 
   return (
@@ -95,9 +95,13 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
         }}
         className="imageBg p-0"
       >
-        <div className="blur py-3 px-3 rounded-bottom ">
+        <div className="blur py-3 px-3 rounded-bottom">
           <Card.Title className="truncate">{title}</Card.Title>
           <div className="d-flex gap-1 align-items-center">
+            {
+              !pc && !xbox && !playstation && !switchPlatform && !ios && !android &&
+              <div className="emptyPlatform"></div>
+            }
             {pc &&
               <svg className="platformIcon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 13.772l6.545.902V8.426H0zM0 7.62h6.545V1.296L0

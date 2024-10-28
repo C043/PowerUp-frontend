@@ -30,6 +30,7 @@ const HomePage = () => {
   if (search) url = url + "&search=" + search
 
   const fetchGames = async () => {
+    setIsLoaded(false)
     setHasError(false)
     try {
       const resp = await fetch(url, {
@@ -87,7 +88,7 @@ const HomePage = () => {
           <div className="d-flex flex-column align-items-center gap-3">
             <Row className="w-100 mt-3 g-2">
               {hasError && isLoaded && <Alert variant="danger">Fetch Error</Alert>}
-              {games.length === 0 && isLoaded === false &&
+              {isLoaded === false &&
                 [...Array(20).keys()].map(index =>
                   <Col xs="12" md="6" lg="3" key={index}>
                     <LoadingGameCard />
