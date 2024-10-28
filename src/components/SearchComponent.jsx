@@ -74,7 +74,7 @@ const StyledWrapper = styled.div`
   .focused{
     width: 100%;
     cursor: text;
-    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #1ad214, inset -1.5px -1.5px 3px #1ad214;
+    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #1ad214;
   }
 
   .input:focus + .icon,
