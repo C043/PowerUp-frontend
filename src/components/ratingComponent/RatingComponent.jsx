@@ -183,7 +183,7 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
           onClick={() => handleRating(5)}
         />
       </div>
-      <Accordion className="mt-3" defaultActiveKey="0">
+      <Accordion className="mt-3">
         <Accordion.Item eventKey="0">
           <Accordion.Header><p className="h5 p-0">Leave a Review</p></Accordion.Header>
           <Accordion.Body>
