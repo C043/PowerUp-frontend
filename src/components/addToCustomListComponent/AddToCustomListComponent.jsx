@@ -23,8 +23,8 @@ const AddToCustomListComponent = () => {
     ev.preventDefault()
     if (remove) {
       const index = isPresent.indexOf(listId)
-      removeFromList(listId)
       isPresent.splice(index, 1)
+      removeFromList(listId)
     }
     else addToList(listId)
   }
