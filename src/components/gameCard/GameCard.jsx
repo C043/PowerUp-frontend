@@ -71,7 +71,7 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
   }, [platforms])
 
   return (
-    <Card border="dark" className={hide ? "d-none" : "border-opacity-0"}>
+    <div className={hide ? "d-none customCard" : "card customCard"}>
       {customGame && <>
         <div
           className="deleteGame position-absolute bg-danger rounded rounded-circle p-0"
@@ -85,13 +85,14 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
       <GameCardHoverComponent gameId={gameId} />
       <Card.Img variant="top" src={image} className="object-fit-cover" style={{
         height: "150px",
+        borderTopRightRadius: "5px"
       }} />
       <Card.Body
         style={{
           backgroundImage: "url(" + image + ")",
           backgroundSize: "cover",
-          borderBottomLeftRadius: "25px",
-          borderBottomRightRadius: "25px",
+          borderBottomLeftRadius: "50px",
+          borderBottomRightRadius: "50px",
         }}
         className="imageBg p-0"
       >
@@ -197,7 +198,7 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
           </Card.Text>
         </div>
       </Card.Body>
-    </Card>
+    </div>
   );
 };
 

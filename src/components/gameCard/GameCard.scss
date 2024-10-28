@@ -2,36 +2,15 @@
   backdrop-filter: brightness(0.8) blur(100px);
 }
 
-.card {
-  transition: all 200ms;
-  border: none;
-
-  &:hover {
-    --curve-size: 0.5em;
-    clip-path: polygon(
-        /* Top-left */
-        0% var(--curve-size),
-        var(--curve-size) 0,
-        /* top-right */
-        100% 0,
-        100% calc(100% - var(--curve-size)),
-        /* bottom-right 1 */
-        calc(100% - var(--curve-size)) 100%,
-        /* bottom-right 2 */
-        0 100%);
-    scale: 1.04;
-  }
-}
-
 .deleteGame {
-  top: 5px;
-  left: 5px;
+  top: 15px;
+  left: 15px;
   height: 1em;
   width: 1em;
   display: none;
 }
 
-.card:hover .deleteGame {
+.customCard:hover .deleteGame {
   display: flex;
 }
 

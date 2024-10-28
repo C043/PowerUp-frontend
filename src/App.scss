@@ -86,7 +86,9 @@ body {
       0 100%);
 }
 
-.card {
+.customCard {
+  transition: all 200ms;
+  border: none;
   --curve-size: 1em;
   clip-path: polygon(
       /* Top-left */
@@ -99,5 +101,6 @@ body {
       calc(100% - var(--curve-size)) 100%,
       /* bottom-right 2 */
       0 100%);
+
 
 }

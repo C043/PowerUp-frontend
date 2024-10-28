@@ -3,7 +3,7 @@ import { Button, Card, Placeholder } from "react-bootstrap";
 
 const LoadingGameCard = ({ image, title }) => {
   return (
-    <Card border="dark" className="border-opacity-0" style={{
+    <Card className="customCard" style={{
       height: "300px"
     }}>
       <Card.Body
