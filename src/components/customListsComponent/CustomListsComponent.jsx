@@ -81,7 +81,7 @@ const CustomListsComponent = () => {
       })}
     </Row>
     <Button
-      className="rounded rounded-pill mt-3"
+      className="customBtn mt-3"
       onClick={handleShow}
     >
       Add Custom List
@@ -103,8 +103,9 @@ const CustomListsComponent = () => {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          <Button className="customBtn" variant="secondary" onClick={handleClose}>Close</Button>
           <Button
+            className="customBtn"
             variant="primary"
             type="submit"
           >

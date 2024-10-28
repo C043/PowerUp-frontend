@@ -70,9 +70,9 @@ const GameNotesComponent = ({ gameId }) => {
         {notes ?
             <>
                 <p className="gameNotes">{notes}</p>
-                <Button onClick={handleShow} className="rounded rounded-pill">Edit Notes</Button>
+                <Button onClick={handleShow} className="customBtn">Edit Notes</Button>
             </> :
-            <Button onClick={handleShow} className="rounded rounded-pill">Add Notes</Button>
+            <Button onClick={handleShow} className="customBtn">Add Notes</Button>
         }
         <Modal className="notesModal" show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -84,8 +84,9 @@ const GameNotesComponent = ({ gameId }) => {
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>Close</Button>
+                <Button className="customBtn" variant="secondary" onClick={handleClose}>Close</Button>
                 <Button
+                    className="customBtn"
                     variant="primary"
                     onClick={ev => handleSubmit(ev)}
                 >

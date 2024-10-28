@@ -1,7 +1,6 @@
 import "./AddToCustomListComponent.scss"
 import { useEffect, useState } from "react"
 import { Button, Form, Modal } from "react-bootstrap"
-import { Check } from "react-bootstrap-icons"
 import { useParams } from "react-router-dom"
 
 const AddToCustomListComponent = () => {
@@ -111,7 +110,7 @@ const AddToCustomListComponent = () => {
 
   return <>
     <Button
-      className="mt-3 rounded rounded-pill "
+      className="customBtn py-1 px-3 mt-3"
       onClick={handleShow}
     >
       Add to Custom List
