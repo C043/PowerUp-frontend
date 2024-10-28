@@ -35,3 +35,10 @@
 .emptyPlatform {
   height: 15px;
 }
+
+.customDarkBtn {
+  &:hover {
+    color: #141415;
+    background-color: #1ad214;
+  }
+}
