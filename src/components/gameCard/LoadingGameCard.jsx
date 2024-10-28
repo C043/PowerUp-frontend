@@ -3,7 +3,7 @@ import { Button, Card, Placeholder } from "react-bootstrap";
 
 const LoadingGameCard = ({ image, title }) => {
   return (
-    <Card border="dark" className="border-opacity-0" style={{
+    <Card className="customCard" style={{
       height: "300px"
     }}>
       <Card.Body
@@ -21,7 +21,7 @@ const LoadingGameCard = ({ image, title }) => {
           </Placeholder>
           <Card.Text>
             <div className="d-flex justify-content-end">
-              <Button variant="dark" className="rounded rounded-pill ">
+              <Button variant="dark" className="customBtn">
                 Open
               </Button>
             </div>

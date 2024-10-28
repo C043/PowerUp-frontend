@@ -69,3 +69,35 @@ body {
   background-color: #000000;
   border-color: #ffffff;
 }
+
+.customBtn {
+  --curve-size: 0.5em;
+  border: none;
+  clip-path: polygon(
+      /* Top-left */
+      0% var(--curve-size),
+      var(--curve-size) 0,
+      /* top-right */
+      100% 0,
+      100% calc(100% - var(--curve-size)),
+      /* bottom-right 1 */
+      calc(100% - var(--curve-size)) 100%,
+      /* bottom-right 2 */
+      0 100%);
+}
+
+.customCard {
+  border: none;
+  --curve-size: 1em;
+  clip-path: polygon(
+      /* Top-left */
+      0% var(--curve-size),
+      var(--curve-size) 0,
+      /* top-right */
+      100% 0,
+      100% calc(100% - var(--curve-size)),
+      /* bottom-right 1 */
+      calc(100% - var(--curve-size)) 100%,
+      /* bottom-right 2 */
+      0 100%);
+}
