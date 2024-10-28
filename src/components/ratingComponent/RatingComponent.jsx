@@ -202,11 +202,11 @@ const RatingComponent = ({ ratingSetter, gameId, userRating, list }) => {
               />
             </FloatingLabel>
             <div className="d-flex gap-2 align-items-center mt-3">
-              <Button type="submit" className="rounded rounded-pill" >
+              <Button type="submit" className="customBtn" >
                 {alresdyReviewed ? "Edit Review" : "Submit"}
               </Button>
               {alresdyReviewed &&
-                <Button variant="danger" onClick={deleteReview} className="rounded rounded-pill">
+                <Button variant="danger" onClick={deleteReview} className="customBtn">
                   <Trash />
                 </Button>
               }

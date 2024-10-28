@@ -299,7 +299,7 @@ const GamePage = () => {
 									}
 								}}>
 									<Button
-										className="rounded rounded-pill" variant="secondary"
+										className="customBtn" variant="secondary"
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
@@ -326,7 +326,7 @@ const GamePage = () => {
 								}
 								}>
 									<Button
-										className="rounded rounded-pill" variant="info"
+										className="customBtn" variant="info"
 									>
 										<div className="d-flex gap-1">
 											<Form.Check
@@ -354,7 +354,7 @@ const GamePage = () => {
 								}
 								>
 									<Button
-										className="rounded rounded-pill"
+										className="customBtn"
 									>
 										<div className="d-flex gap-1">
 											<Form.Check

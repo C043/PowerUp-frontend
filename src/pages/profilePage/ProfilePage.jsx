@@ -92,19 +92,19 @@ const ProfilePage = () => {
                     <h1>{user.username}</h1>
                     <div className="d-flex gap-2 ">
                         <Button
-                            className="rounded rounded-pill" variant="secondary"
+                            className="customBtn" variant="secondary"
                             onClick={() => navigate("/backlog")}
                         >
                             <Substack className="mb-1 me-1" />Backlog
                         </Button>
                         <Button
-                            className="rounded rounded-pill" variant="info"
+                            className="customBtn" variant="info"
                             onClick={() => navigate("/playing")}
                         >
                             <Controller className="mb-1 me-1" />Playing
                         </Button>
                         <Button
-                            className="rounded rounded-pill"
+                            className="customBtn"
                             onClick={() => navigate("/played")}
                         >
                             <CheckCircle className="mb-1 me-1" />Played
@@ -138,8 +138,9 @@ const ProfilePage = () => {
                 </div>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>Close</Button>
+                <Button className="customBtn" variant="secondary" onClick={handleClose}>Close</Button>
                 <Button
+                    className="customBtn"
                     variant="primary"
                     onClick={ev => handleSubmit(ev)}
                 >

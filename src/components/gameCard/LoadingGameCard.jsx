@@ -21,7 +21,7 @@ const LoadingGameCard = ({ image, title }) => {
           </Placeholder>
           <Card.Text>
             <div className="d-flex justify-content-end">
-              <Button variant="dark" className="rounded rounded-pill ">
+              <Button variant="dark" className="customBtn">
                 Open
               </Button>
             </div>

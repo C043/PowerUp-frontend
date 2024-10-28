@@ -4,8 +4,21 @@
 
 .card {
   transition: all 200ms;
+  border: none;
 
   &:hover {
+    --curve-size: 0.5em;
+    clip-path: polygon(
+        /* Top-left */
+        0% var(--curve-size),
+        var(--curve-size) 0,
+        /* top-right */
+        100% 0,
+        100% calc(100% - var(--curve-size)),
+        /* bottom-right 1 */
+        calc(100% - var(--curve-size)) 100%,
+        /* bottom-right 2 */
+        0 100%);
     scale: 1.04;
   }
 }
