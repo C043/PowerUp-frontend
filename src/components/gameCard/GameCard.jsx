@@ -84,7 +84,7 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
       }
       <GameCardHoverComponent gameId={gameId} />
       <Card.Img variant="top" src={image} className="object-fit-cover" style={{
-        height: "150px",
+        height: "200px",
         borderTopRightRadius: "5px"
       }} />
       <Card.Body
