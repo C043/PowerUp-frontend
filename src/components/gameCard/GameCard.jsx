@@ -191,7 +191,7 @@ const GameCard = ({ image, title, gameId, customGame, platforms }) => {
           <Card.Text>
             <div className="d-flex justify-content-end">
               <Button onClick={() => navigate(`/game/${gameId}`)} variant="dark"
-                className="customBtn">
+                className="customBtn customDarkBtn">
                 Open
               </Button>
             </div>
